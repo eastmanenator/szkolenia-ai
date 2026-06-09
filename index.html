@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akademia AI – Textilimpex | Szkolenie z AI dla liderów biznesu</title>
+  <meta name="description" content="Praktyczne szkolenie AI dla właścicieli firm, managerów i liderów. Dofinansowanie do 93%. Prowadzący: Szymon Kapturkiewicz." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0b1628;
+      --navy2:  #0f1e35;
+      --navy3:  #132440;
+      --orange: #e8601c;
+      --orange2:#f07030;
+      --white:  #ffffff;
+      --gray:   #a8b8cc;
+      --light:  #d4e0ec;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(11, 22, 40, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,96,28,.2);
+      padding: 0 5%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+    }
+
+    .logo-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transition: background .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--orange2); transform: translateY(-1px); }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding: 100px 5% 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(232,96,28,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,96,28,.15);
+      border: 1px solid rgba(232,96,28,.4);
+      color: var(--orange2);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 20px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(.7); }
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 .accent { color: var(--orange); }
+
+    .hero-sub {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--light);
+      font-weight: 400;
+      margin-bottom: 32px;
+      max-width: 500px;
+      line-height: 1.5;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .hero-stat-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--orange);
+      display: block;
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: .75rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 32px rgba(232,96,28,.35);
+    }
+    .btn-primary:hover {
+      background: var(--orange2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(232,96,28,.5);
+    }
+
+    .btn-ghost {
+      color: var(--white);
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: 1.5px solid rgba(255,255,255,.2);
+      transition: border-color .2s, background .2s;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,.5);
+      background: rgba(255,255,255,.05);
+    }
+
+    .hero-image-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .hero-image-wrap::before {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(232,96,28,.22) 0%, transparent 70%);
+    }
+
+    .hero-photo {
+      width: 420px;
+      max-width: 90%;
+      border-radius: 24px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 40px 100px rgba(0,0,0,.6);
+      object-fit: cover;
+    }
+
+    .hero-subsidy-badge {
+      position: absolute;
+      top: 30px; left: -20px;
+      background: var(--orange);
+      border-radius: 16px;
+      padding: 16px 20px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(232,96,28,.4);
+      z-index: 2;
+    }
+    .hero-subsidy-badge .num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+      display: block;
+    }
+    .hero-subsidy-badge .label {
+      font-size: .75rem;
+      font-weight: 600;
+      opacity: .9;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ── SECTION SHARED ───────────────────────── */
+    section { padding: 96px 5%; }
+
+    .section-label {
+      color: var(--orange);
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    /* ── WHY SECTION ──────────────────────────── */
+    .why { background: var(--navy2); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .why-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 20px;
+      padding: 36px 32px;
+      transition: border-color .2s, transform .2s;
+    }
+    .why-card:hover {
+      border-color: rgba(232,96,28,.4);
+      transform: translateY(-4px);
+    }
+
+    .why-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: rgba(232,96,28,.12);
+      border: 1px solid rgba(232,96,28,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .why-icon svg { width: 24px; height: 24px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .why-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      font-size: .9rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── PROGRAM ──────────────────────────────── */
+    .program-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .program-tag {
+      background: rgba(232,96,28,.1);
+      border: 1px solid rgba(232,96,28,.25);
+      color: var(--orange2);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: .85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .module {
+      background: var(--navy2);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: border-color .2s, background .2s;
+    }
+    .module:hover {
+      border-color: rgba(232,96,28,.3);
+      background: var(--navy3);
+    }
+
+    .module-num {
+      width: 44px; height: 44px;
+      min-width: 44px;
+      background: var(--orange);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .module-name {
+      font-size: .95rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    /* ── PRICING ──────────────────────────────── */
+    .pricing { background: var(--navy2); }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+      max-width: 900px;
+    }
+
+    .price-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .price-card:hover { transform: translateY(-4px); }
+
+    .price-card.featured {
+      border-color: rgba(232,96,28,.5);
+      background: linear-gradient(135deg, rgba(232,96,28,.08), var(--navy3));
+    }
+
+    .price-card.featured::before {
+      content: 'Polecane';
+      position: absolute;
+      top: 20px; right: 20px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    .price-type {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .price-main {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+
+    .price-currency {
+      font-size: 1.5rem;
+      font-weight: 700;
+      vertical-align: super;
+      margin-left: 4px;
+      color: var(--orange);
+    }
+
+    .price-note {
+      font-size: .8rem;
+      color: var(--gray);
+      margin-top: 8px;
+      margin-bottom: 20px;
+    }
+
+    .price-original {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.05);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: .85rem;
+    }
+
+    .price-original s {
+      color: var(--gray);
+    }
+
+    .price-original strong {
+      color: var(--orange);
+    }
+
+    .subsidy-info {
+      margin-top: 48px;
+      background: linear-gradient(135deg, rgba(232,96,28,.12), rgba(11,22,40,.6));
+      border: 1px solid rgba(232,96,28,.3);
+      border-radius: 20px;
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      max-width: 900px;
+    }
+
+    .subsidy-pct {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+
+    .subsidy-pct span { font-size: 2rem; }
+
+    .subsidy-text h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .subsidy-text p {
+      font-size: .9rem;
+      color: var(--gray);
+      max-width: 480px;
+    }
+
+    /* ── TRAINER ──────────────────────────────── */
+    .trainer-wrap {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .trainer-photo-wrap {
+      position: relative;
+    }
+
+    .trainer-photo {
+      width: 320px;
+      border-radius: 24px;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 32px 80px rgba(0,0,0,.5);
+    }
+
+    .trainer-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--orange);
+      border-radius: 24px;
+      z-index: -1;
+      opacity: .4;
+    }
+
+    .trainer-name {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .trainer-title {
+      color: var(--orange);
+      font-size: .95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 24px;
+    }
+
+    .trainer-bio {
+      font-size: 1rem;
+      color: var(--light);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 560px;
+    }
+
+    .trainer-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(232,96,28,.1);
+      border: 1px solid rgba(232,96,28,.2);
+      color: var(--light);
+      padding: 7px 16px;
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 500;
+    }
+
+    /* ── REGISTER ─────────────────────────────── */
+    .register {
+      background: var(--navy2);
+      text-align: center;
+    }
+
+    .register .section-title { margin: 0 auto 12px; }
+    .register .section-desc  { margin: 0 auto 48px; }
+
+    .register-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--navy3);
+      border: 1px solid rgba(232,96,28,.25);
+      border-radius: 24px;
+      padding: 48px;
+    }
+
+    .register-box h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .register-box p {
+      color: var(--gray);
+      font-size: .9rem;
+      margin-bottom: 32px;
+    }
+
+    .register-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .register-link-small {
+      font-size: .8rem;
+      color: var(--gray);
+    }
+
+    .register-link-small a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+    .register-link-small a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 32px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      font-size: .8rem;
+      color: var(--gray);
+    }
+
+    footer a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    /* ── DIVIDER ──────────────────────────────── */
+    .divider {
+      width: 56px; height: 4px;
+      background: var(--orange);
+      border-radius: 2px;
+      margin: 20px 0 32px;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 120px;
+        text-align: center;
+      }
+      .hero-stats { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .hero-image-wrap { order: -1; }
+      .hero-subsidy-badge { top: 20px; left: 10px; }
+      .hero-photo { width: 300px; }
+      .trainer-wrap { grid-template-columns: 1fr; text-align: center; }
+      .trainer-photo { width: 260px; margin: 0 auto; }
+      .trainer-photo-wrap::after { display: none; }
+      .trainer-tags { justify-content: center; }
+      .section-desc { margin: 0 auto; }
+      .divider { margin-left: auto; margin-right: auto; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 64px 5%; }
+      .register-box { padding: 32px 24px; }
+      .subsidy-info { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ────────────────────────────────────── -->
+<nav>
+  <a href="#" class="logo">
+    <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="18,2 34,30 2,30" fill="none" stroke="#e8601c" stroke-width="2.5" stroke-linejoin="round"/>
+      <polygon points="18,10 28,26 8,26" fill="#e8601c" opacity=".25"/>
+    </svg>
+    <span class="logo-text">textilimpex</span>
+  </a>
+  <a href="#rejestracja" class="nav-cta">Zarejestruj się</a>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Akademia AI · Edycja 2025</div>
+    <h1>Zostań liderem<br><span class="accent">AI</span> w swojej<br>branży</h1>
+    <p class="hero-sub">Praktyczne szkolenie dla właścicieli firm, managerów i liderów, którzy chcą wdrożyć sztuczną inteligencję w swoich organizacjach.</p>
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num">8</span>
+        <span class="hero-stat-label">Modułów</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">93%</span>
+        <span class="hero-stat-label">Dofinansowania</span>
+      </div>
+      <div>
+        <span class="hero-stat-num">490 zł</span>
+        <span class="hero-stat-label">Od osoby</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#rejestracja" class="btn-primary">Zarejestruj zainteresowanie</a>
+      <a href="#program" class="btn-ghost">Zobacz program</a>
+    </div>
+  </div>
+
+  <div class="hero-image-wrap">
+    <div class="hero-subsidy-badge">
+      <span class="num">93%</span>
+      <span class="label">Dofinansowania</span>
+    </div>
+    <img src="assets/szymon.jpg" alt="Szymon Kapturkiewicz – prowadzący" class="hero-photo" />
+  </div>
+</section>
+
+<!-- ── DLACZEGO WARTO ──────────────────────────── -->
+<section class="why" id="dlaczego">
+  <div class="section-label">Dlaczego warto</div>
+  <h2 class="section-title">Co zyskujesz<br>dzięki szkoleniu?</h2>
+  <div class="divider"></div>
+  <p class="section-desc">Szkolenie zostało zaprojektowane, by przełożyć teorię na konkretne działania w Twojej firmie – od strategii po wdrożenie.</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <h3>Uporządkujesz strategię AI</h3>
+      <p>Stworzysz jasną wizję wykorzystania AI w swojej organizacji, dopasowaną do specyfiki branży i celów biznesowych.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </div>
+      <h3>Zidentyfikujesz procesy do wdrożenia</h3>
+      <p>Nauczysz się analizować procesy biznesowe i wskazywać te, które przyniosą największe korzyści po automatyzacji.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3>Zaprojektujesz roadmapę działań</h3>
+      <p>Wyjdziesz ze szkolenia z gotowym, konkretnym planem wdrożenia AI – krokami, zasobami i harmonogramem.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      </div>
+      <h3>Poznasz bezpieczeństwo i governance</h3>
+      <p>Dowiesz się, jak wdrażać AI w sposób odpowiedzialny, zgodny z przepisami i bezpieczny dla organizacji i klientów.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRAM ─────────────────────────────────── -->
+<section id="program">
+  <div class="program-header">
+    <div>
+      <div class="section-label">Program szkolenia</div>
+      <h2 class="section-title">8 praktycznych<br>modułów</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Od podstaw do strategii wdrożenia – kompleksowy kurs prowadzony przez eksperta.</p>
+    </div>
+    <div class="program-tag">Od wiedzy do wdrożenia</div>
+  </div>
+
+  <div class="modules-grid">
+    <div class="module">
+      <div class="module-num">1</div>
+      <div class="module-name">Fundamenty AI</div>
+    </div>
+    <div class="module">
+      <div class="module-num">2</div>
+      <div class="module-name">Procesy do wdrożenia</div>
+    </div>
+    <div class="module">
+      <div class="module-num">3</div>
+      <div class="module-name">Projektowanie rozwiązań</div>
+    </div>
+    <div class="module">
+      <div class="module-num">4</div>
+      <div class="module-name">Bezpieczeństwo i governance</div>
+    </div>
+    <div class="module">
+      <div class="module-num">5</div>
+      <div class="module-name">Generatywna AI w pracy lidera</div>
+    </div>
+    <div class="module">
+      <div class="module-num">6</div>
+      <div class="module-name">Testowanie i iteracje</div>
+    </div>
+    <div class="module">
+      <div class="module-num">7</div>
+      <div class="module-name">Strategia wdrożenia</div>
+    </div>
+    <div class="module">
+      <div class="module-num">8</div>
+      <div class="module-name">Walidacja i podsumowanie</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CENNIK ──────────────────────────────────── -->
+<section class="pricing" id="cennik">
+  <div class="section-label">Cennik</div>
+  <h2 class="section-title">Inwestycja<br>w Twój rozwój</h2>
+  <div class="divider"></div>
+  <p class="section-desc">Dzięki dofinansowaniu ze środków publicznych szkolenie o wartości 7 000 zł jest dostępne w ułamku ceny.</p>
+
+  <div class="pricing-cards">
+    <div class="price-card">
+      <div class="price-type">Osoba fizyczna</div>
+      <div class="price-main">490<span class="price-currency">zł</span></div>
+      <div class="price-note">cena po dofinansowaniu</div>
+      <div class="price-original">
+        <s>7 000 zł</s>
+        <strong>–93%</strong>
+      </div>
+    </div>
+    <div class="price-card featured">
+      <div class="price-type">Firma / pracownik</div>
+      <div class="price-main">1&nbsp;050<span class="price-currency">zł</span></div>
+      <div class="price-note">cena po dofinansowaniu</div>
+      <div class="price-original">
+        <s>7 000 zł</s>
+        <strong>–85%</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsidy-info">
+    <div class="subsidy-pct">93<span>%</span></div>
+    <div class="subsidy-text">
+      <h3>Dofinansowanie ze środków publicznych</h3>
+      <p>Szkolenie jest objęte dofinansowaniem, dzięki któremu płacisz tylko za niewielką część rzeczywistej wartości. Wartość szkolenia wynosi 7 000 zł brutto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROWADZĄCY ──────────────────────────────── -->
+<section id="prowadzacy">
+  <div class="section-label">Prowadzący</div>
+  <div class="trainer-wrap">
+    <div class="trainer-photo-wrap">
+      <img src="assets/szymon.jpg" alt="Szymon Kapturkiewicz" class="trainer-photo" />
+    </div>
+    <div>
+      <h2 class="trainer-name">Szymon<br>Kapturkiewicz</h2>
+      <div class="trainer-title">Ekspert AI &amp; Transformacja Cyfrowa</div>
+      <p class="trainer-bio">
+        Praktyk wdrożeń sztucznej inteligencji w biznesie. Pomaga właścicielom firm i liderom zrozumieć potencjał AI i przekuć go w konkretne rezultaty. Łączy wiedzę techniczną z perspektywą biznesową, co pozwala tworzyć rozwiązania przynoszące realną wartość.
+      </p>
+      <div class="trainer-tags">
+        <span class="tag">Strategia AI</span>
+        <span class="tag">Transformacja cyfrowa</span>
+        <span class="tag">Generatywna AI</span>
+        <span class="tag">Wdrożenia biznesowe</span>
+        <span class="tag">Leadership</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REJESTRACJA ─────────────────────────────── -->
+<section class="register" id="rejestracja">
+  <div class="section-label">Zapisz się</div>
+  <h2 class="section-title">Zarejestruj zainteresowanie</h2>
+  <div class="divider" style="margin: 20px auto 32px;"></div>
+  <p class="section-desc">Wypełnij formularz zgłoszeniowy i dołącz do grona liderów, którzy już wykorzystują AI w swoich organizacjach.</p>
+
+  <div class="register-box">
+    <h3>Wypełnij formularz zgłoszeniowy</h3>
+    <p>Bezpłatna rejestracja zainteresowania. Skontaktujemy się z Tobą w ciągu 24 godzin z dalszymi informacjami.</p>
+    <div class="register-actions">
+      <a href="https://intersynergy.link/akademia-ai-textilimpex" class="btn-primary" target="_blank" rel="noopener">
+        Przejdź do formularza →
+      </a>
+      <span class="register-link-small">
+        Masz pytania? Skontaktuj się przez formularz na <a href="https://intersynergy.link/akademia-ai-textilimpex" target="_blank" rel="noopener">intersynergy.link/akademia-ai-textilimpex</a>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────── -->
+<footer>
+  <p>&copy; 2025 Textilimpex. Szkolenie prowadzone przez Szymon Kapturkiewicz.</p>
+  <p>Zapytania: <a href="https://intersynergy.link/akademia-ai-textilimpex" target="_blank" rel="noopener">intersynergy.link/akademia-ai-textilimpex</a></p>
+</footer>
+
+</body>
+</html>

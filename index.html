@@ -50,17 +50,13 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
       text-decoration: none;
     }
 
-    .logo-icon { width: 36px; height: 36px; }
-
-    .logo-text {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.02em;
+    .logo-img {
+      height: 30px;
+      width: auto;
+      display: block;
     }
 
     .nav-cta {
@@ -909,11 +905,7 @@
 <!-- ── NAV ────────────────────────────────────── -->
 <nav>
   <a href="#" class="logo">
-    <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="18,2 34,30 2,30" fill="none" stroke="#e8601c" stroke-width="2.5" stroke-linejoin="round"/>
-      <polygon points="18,10 28,26 8,26" fill="#e8601c" opacity=".25"/>
-    </svg>
-    <span class="logo-text">textilimpex</span>
+    <img src="assets/logo.png" alt="Textilimpex" class="logo-img" />
   </a>
   <a href="#rejestracja" class="nav-cta">Zarejestruj się</a>
 </nav>

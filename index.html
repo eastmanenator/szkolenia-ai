@@ -355,30 +355,35 @@
       align-self: flex-start;
     }
 
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
+    /* ── ACCORDION ────────────────────────────── */
+    .accordion { display: flex; flex-direction: column; gap: 12px; }
 
-    .module {
+    .acc-item {
       background: var(--navy2);
       border: 1px solid rgba(255,255,255,.07);
-      border-radius: 16px;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+    .acc-item.open,
+    .acc-item:hover { border-color: rgba(232,96,28,.35); }
+
+    .acc-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
       padding: 24px 28px;
       display: flex;
       align-items: center;
       gap: 20px;
-      transition: border-color .2s, background .2s;
-    }
-    .module:hover {
-      border-color: rgba(232,96,28,.3);
-      background: var(--navy3);
+      text-align: left;
     }
 
-    .module-num {
-      width: 44px; height: 44px;
-      min-width: 44px;
+    .acc-num {
+      width: 46px; height: 46px;
+      min-width: 46px;
       background: var(--orange);
       border-radius: 12px;
       display: flex;
@@ -386,12 +391,105 @@
       justify-content: center;
       font-weight: 900;
       font-size: 1rem;
+      transition: background .2s;
+    }
+    .acc-item.open .acc-num { background: var(--orange2); }
+
+    .acc-title-wrap { flex: 1; }
+
+    .acc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+      display: block;
     }
 
-    .module-name {
-      font-size: .95rem;
-      font-weight: 600;
-      line-height: 1.3;
+    .acc-subtitle {
+      font-size: .78rem;
+      color: var(--gray);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .acc-arrow {
+      width: 32px; height: 32px;
+      min-width: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, transform .3s;
+    }
+    .acc-arrow svg { width: 16px; height: 16px; stroke: var(--gray); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .acc-item.open .acc-arrow { background: rgba(232,96,28,.15); transform: rotate(180deg); }
+    .acc-item.open .acc-arrow svg { stroke: var(--orange); }
+
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-item.open .acc-body { max-height: 600px; }
+
+    .acc-inner {
+      padding: 0 28px 28px 94px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 24px;
+    }
+
+    .acc-desc {
+      font-size: .93rem;
+      color: var(--light);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .acc-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .acc-topic {
+      background: rgba(232,96,28,.08);
+      border: 1px solid rgba(232,96,28,.18);
+      color: var(--light);
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: .78rem;
+      font-weight: 500;
+    }
+
+    .acc-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .acc-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .acc-bullets li::before {
+      content: '';
+      width: 6px; height: 6px;
+      min-width: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      margin-top: 7px;
+    }
+
+    @media (max-width: 600px) {
+      .acc-inner { padding: 20px 20px 20px; }
+      .acc-trigger { padding: 20px; }
     }
 
     /* ── PRICING ──────────────────────────────── */
@@ -797,39 +895,248 @@
     <div class="program-tag">Od wiedzy do wdrożenia</div>
   </div>
 
-  <div class="modules-grid">
-    <div class="module">
-      <div class="module-num">1</div>
-      <div class="module-name">Fundamenty AI</div>
+  <div class="accordion" id="accordion">
+
+    <!-- 1 -->
+    <div class="acc-item open">
+      <button class="acc-trigger" aria-expanded="true">
+        <div class="acc-num">1</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Fundamenty AI</span>
+          <span class="acc-subtitle">Czym jest AI i jak naprawdę działa</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Bez technicznego żargonu – zrozumiesz, czym tak naprawdę jest sztuczna inteligencja, jakie masz do dyspozycji narzędzia i dlaczego AI zmienia reguły gry w każdej branży. Moduł buduje wspólny język dla całego szkolenia.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">AI, ML i deep learning</span>
+            <span class="acc-topic">Generatywna AI</span>
+            <span class="acc-topic">Przegląd narzędzi rynkowych</span>
+            <span class="acc-topic">Case studies z biznesu</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Kluczowe pojęcia: AI, machine learning, modele językowe (LLM) – co oznaczają w praktyce</li>
+            <li>Przegląd najważniejszych narzędzi: ChatGPT, Claude, Copilot, Gemini i ekosystem AI</li>
+            <li>Co AI potrafi, a czego nie potrafi – realistyczne oczekiwania lidera</li>
+            <li>Przykłady wdrożeń AI w różnych sektorach: produkcja, handel, usługi, logistyka</li>
+            <li>Trendy i kierunki rozwoju AI w perspektywie 2–3 lat</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">2</div>
-      <div class="module-name">Procesy do wdrożenia</div>
+
+    <!-- 2 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">2</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Procesy do wdrożenia</span>
+          <span class="acc-subtitle">Gdzie AI przyniesie największy zwrot w Twojej firmie</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Nauczysz się metodycznie przeglądać procesy w swojej organizacji i oceniać, które z nich są gotowe na AI. Zidentyfikujesz szybkie wygrane (quick wins) oraz projekty, które przyniosą strategiczną przewagę w dłuższym horyzoncie.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Mapowanie procesów</span>
+            <span class="acc-topic">Matryca gotowości AI</span>
+            <span class="acc-topic">Analiza ROI</span>
+            <span class="acc-topic">Priorytetyzacja</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Metodologia inwentaryzacji procesów biznesowych pod kątem automatyzacji</li>
+            <li>Kryteria kwalifikacji procesu do wdrożenia AI (powtarzalność, dane, koszt błędu)</li>
+            <li>Matryca quick wins vs. projekty strategiczne – jak priorytetyzować portfel inicjatyw</li>
+            <li>Szacowanie ROI jeszcze przed rozpoczęciem wdrożenia</li>
+            <li>Warsztaty: mapowanie procesów w Twojej firmie i wybór pilotażu</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">3</div>
-      <div class="module-name">Projektowanie rozwiązań</div>
+
+    <!-- 3 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">3</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Projektowanie rozwiązań</span>
+          <span class="acc-subtitle">Od pomysłu do gotowej specyfikacji</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Dowiesz się, jak przejść od ogólnego pomysłu do konkretnej specyfikacji rozwiązania, którą możesz przekazać zespołowi technicznemu lub dostawcy. Zrozumiesz, kiedy budować własne narzędzie, kiedy kupić gotowe, a kiedy dostosować istniejące rozwiązanie.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Canvas rozwiązania AI</span>
+            <span class="acc-topic">Build vs. Buy</span>
+            <span class="acc-topic">Dobór narzędzi</span>
+            <span class="acc-topic">Integracja systemów</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Canvas projektowania rozwiązania AI – od problemu do specyfikacji w jednej strukturze</li>
+            <li>Kryteria decyzji build vs. buy vs. customize – jak nie przepłacić i nie utknąć</li>
+            <li>Przegląd platform i narzędzi: no-code AI, API, modele fundacyjne</li>
+            <li>Integracja nowych rozwiązań AI z istniejącymi systemami ERP/CRM</li>
+            <li>Zarządzanie dostawcami i partnerami technologicznymi</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">4</div>
-      <div class="module-name">Bezpieczeństwo i governance</div>
+
+    <!-- 4 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">4</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Bezpieczeństwo i governance</span>
+          <span class="acc-subtitle">Odpowiedzialne AI zgodne z prawem i etyką</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Wdrożenie AI wiąże się z odpowiedzialnością prawną, etyczną i operacyjną. Ten moduł wyposaży Cię w wiedzę o regulacjach (EU AI Act, RODO) i narzędziach governance, które chronią Twoją firmę i budują zaufanie klientów.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">EU AI Act</span>
+            <span class="acc-topic">RODO a AI</span>
+            <span class="acc-topic">Audyt modeli</span>
+            <span class="acc-topic">Polityki AI</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>EU AI Act w praktyce – co oznacza dla Twojej firmy i jakie masz obowiązki</li>
+            <li>RODO i przetwarzanie danych w projektach AI – co wolno, co jest ryzykowne</li>
+            <li>Odpowiedzialne AI: transparentność, uprzedzenia algorytmiczne, wyjaśnialność decyzji</li>
+            <li>Bezpieczeństwo informacji: co można podawać do modeli AI, a co nie</li>
+            <li>Tworzenie wewnętrznych polityk i procedur AI dla organizacji</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">5</div>
-      <div class="module-name">Generatywna AI w pracy lidera</div>
+
+    <!-- 5 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">5</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Generatywna AI w pracy lidera</span>
+          <span class="acc-subtitle">Praktyczne narzędzia AI na co dzień</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Hands-on moduł, w którym uczysz się korzystać z generatywnej AI jako swojego codziennego asystenta. Opanujesz prompt engineering i poznasz konkretne zastosowania, które od razu oszczędzają czas w pracy menedżera i właściciela firmy.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Prompt engineering</span>
+            <span class="acc-topic">AI w komunikacji</span>
+            <span class="acc-topic">Automatyzacja raportów</span>
+            <span class="acc-topic">Narzędzia produktywności</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Zaawansowane techniki promptowania – jak rozmawiać z AI, by dostawać użyteczne odpowiedzi</li>
+            <li>ChatGPT / Claude / Copilot w codziennej pracy: maile, prezentacje, analizy, decyzje</li>
+            <li>Automatyzacja powtarzalnych zadań menedżerskich i raportowania</li>
+            <li>AI jako asystent strategiczny – jak prowadzić dialog z modelem o problemach biznesowych</li>
+            <li>Przegląd narzędzi produktywności opartych na AI (Notion AI, Perplexity, Gamma i inne)</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">6</div>
-      <div class="module-name">Testowanie i iteracje</div>
+
+    <!-- 6 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">6</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Testowanie i iteracje</span>
+          <span class="acc-subtitle">Jak sprawdzać i ulepszać rozwiązania AI</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Projekty AI rzadko działają idealnie od pierwszego uruchomienia. Ten moduł uczy, jak podejść do wdrożenia iteracyjnie – uruchamiać pilotaże, mierzyć wyniki i systematycznie poprawiać rozwiązanie bez ponoszenia dużego ryzyka.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Metodologia MVP</span>
+            <span class="acc-topic">KPI dla AI</span>
+            <span class="acc-topic">Pętle feedbacku</span>
+            <span class="acc-topic">Zarządzanie ryzykiem</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Podejście MVP w projektach AI – jak uruchomić pilotaż szybko i tanio</li>
+            <li>Definiowanie mierzalnych kryteriów sukcesu (KPI) przed startem projektu</li>
+            <li>Jak zbierać feedback od użytkowników i przekładać go na poprawki systemu</li>
+            <li>Typowe błędy i pułapki w projektach AI – jak ich unikać</li>
+            <li>Decyzja o skalowaniu vs. zatrzymaniu projektu – kiedy i na jakiej podstawie</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">7</div>
-      <div class="module-name">Strategia wdrożenia</div>
+
+    <!-- 7 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">7</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Strategia wdrożenia</span>
+          <span class="acc-subtitle">Jak przeprowadzić organizację przez zmianę</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Największe wyzwanie wdrożeń AI to nie technologia – to ludzie i organizacja. Moduł uczy, jak zarządzać zmianą, angażować zespół, komunikować transformację i budować kulturę organizacji, która efektywnie wykorzystuje AI.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Change management</span>
+            <span class="acc-topic">Komunikacja zmiany</span>
+            <span class="acc-topic">Szkolenie zespołu</span>
+            <span class="acc-topic">Kultura AI</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Zarządzanie zmianą (change management) w projektach transformacji AI</li>
+            <li>Jak komunikować wdrożenie AI do pracowników – obawy, opór, zaangażowanie</li>
+            <li>Budowanie wewnętrznych kompetencji AI w zespole i organizacji</li>
+            <li>Sponsoring i zaangażowanie zarządu – jak uzyskać i utrzymać wsparcie</li>
+            <li>Tworzenie kultury organizacyjnej otwartej na eksperymenty i ciągłe uczenie się</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">8</div>
-      <div class="module-name">Walidacja i podsumowanie</div>
+
+    <!-- 8 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">8</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Walidacja i podsumowanie</span>
+          <span class="acc-subtitle">Mierzenie efektów i plan na kolejne 90 dni</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Finałowy moduł zamienia całe szkolenie w konkretny plan działania. Dowiesz się, jak mierzyć realne efekty wdrożeń AI, jak ciągle optymalizować działające rozwiązania i jak zaplanować kolejne kroki w transformacji AI Twojej organizacji.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Audyt wdrożenia</span>
+            <span class="acc-topic">Metryki efektywności</span>
+            <span class="acc-topic">Roadmapa kompetencji</span>
+            <span class="acc-topic">Plan 90 dni</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Framework walidacji wdrożeń AI – jak stwierdzić, że projekt rzeczywiście działa</li>
+            <li>Raportowanie efektów AI do zarządu i interesariuszy</li>
+            <li>Optymalizacja i doskonalenie działających rozwiązań w cyklu ciągłego doskonalenia</li>
+            <li>Budowanie wewnętrznego centrum kompetencji AI (CoE)</li>
+            <li>Twój osobisty plan działania: 3 konkretne inicjatywy AI na najbliższe 90 dni</li>
+          </ul>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -921,5 +1228,21 @@
   <p>Zapytania: <a href="https://intersynergy.link/akademia-ai-textilimpex" target="_blank" rel="noopener">intersynergy.link/akademia-ai-textilimpex</a></p>
 </footer>
 
+<script>
+  document.querySelectorAll('.acc-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.acc-trigger').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
 </body>
 </html>

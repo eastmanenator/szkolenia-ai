@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akademia AI – Textilimpex | Szkolenie z AI dla liderów biznesu</title>
-  <meta name="description" content="Praktyczne szkolenie AI dla właścicieli firm, managerów i liderów. Dofinansowanie do 93%. Prowadzący: Szymon Kapturkiewicz." />
+  <meta name="description" content="70-godzinny program warsztatowy AI dla właścicieli firm, managerów i liderów. Dofinansowanie do 93%. Łódź, ul. Traugutta 25. Prowadzący: Szymon Kapturkiewicz." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -54,10 +54,7 @@
       text-decoration: none;
     }
 
-    .logo-icon {
-      width: 36px;
-      height: 36px;
-    }
+    .logo-icon { width: 36px; height: 36px; }
 
     .logo-text {
       font-size: 1.1rem;
@@ -72,9 +69,9 @@
       text-decoration: none;
       padding: 10px 22px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: .85rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: .02em;
       transition: background .2s, transform .2s;
       white-space: nowrap;
     }
@@ -131,7 +128,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 6vw, 5rem);
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
       font-weight: 900;
       line-height: 1.0;
       letter-spacing: -0.03em;
@@ -141,22 +138,23 @@
     .hero h1 .accent { color: var(--orange); }
 
     .hero-sub {
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
       color: var(--light);
       font-weight: 400;
       margin-bottom: 32px;
       max-width: 500px;
-      line-height: 1.5;
+      line-height: 1.65;
     }
 
     .hero-stats {
       display: flex;
       gap: 32px;
       margin-bottom: 40px;
+      flex-wrap: wrap;
     }
 
     .hero-stat-num {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 900;
       color: var(--orange);
       display: block;
@@ -164,7 +162,7 @@
     }
 
     .hero-stat-label {
-      font-size: .75rem;
+      font-size: .72rem;
       color: var(--gray);
       text-transform: uppercase;
       letter-spacing: .06em;
@@ -252,7 +250,7 @@
       display: block;
     }
     .hero-subsidy-badge .label {
-      font-size: .75rem;
+      font-size: .72rem;
       font-weight: 600;
       opacity: .9;
       text-transform: uppercase;
@@ -282,33 +280,82 @@
     .section-desc {
       font-size: 1.05rem;
       color: var(--gray);
-      max-width: 580px;
+      max-width: 600px;
       line-height: 1.7;
     }
 
-    /* ── WHY SECTION ──────────────────────────── */
-    .why { background: var(--navy2); }
+    .divider {
+      width: 56px; height: 4px;
+      background: var(--orange);
+      border-radius: 2px;
+      margin: 20px 0 32px;
+    }
 
-    .why-grid {
+    /* ── FOR WHOM ─────────────────────────────── */
+    .forwhom { background: var(--navy2); }
+
+    .forwhom-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 56px;
+    }
+
+    .fw-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 18px;
+      padding: 28px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color .2s, transform .2s;
+    }
+    .fw-card:hover { border-color: rgba(232,96,28,.35); transform: translateY(-3px); }
+
+    .fw-icon {
+      width: 44px; height: 44px;
+      min-width: 44px;
+      border-radius: 12px;
+      background: rgba(232,96,28,.12);
+      border: 1px solid rgba(232,96,28,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fw-icon svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .fw-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .fw-card p {
+      font-size: .82rem;
+      color: var(--gray);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ── BENEFITS ─────────────────────────────── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
       margin-top: 56px;
     }
 
-    .why-card {
-      background: var(--navy3);
+    .benefit-card {
+      background: var(--navy2);
       border: 1px solid rgba(255,255,255,.07);
       border-radius: 20px;
-      padding: 36px 32px;
+      padding: 32px 28px;
       transition: border-color .2s, transform .2s;
     }
-    .why-card:hover {
-      border-color: rgba(232,96,28,.4);
-      transform: translateY(-4px);
-    }
+    .benefit-card:hover { border-color: rgba(232,96,28,.4); transform: translateY(-4px); }
 
-    .why-icon {
+    .benefit-icon {
       width: 52px; height: 52px;
       border-radius: 14px;
       background: rgba(232,96,28,.12);
@@ -318,20 +365,10 @@
       justify-content: center;
       margin-bottom: 20px;
     }
+    .benefit-icon svg { width: 24px; height: 24px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-    .why-icon svg { width: 24px; height: 24px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-    .why-card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .why-card p {
-      font-size: .9rem;
-      color: var(--gray);
-      line-height: 1.6;
-    }
+    .benefit-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .benefit-card p  { font-size: .88rem; color: var(--gray); line-height: 1.6; }
 
     /* ── PROGRAM ──────────────────────────────── */
     .program-header {
@@ -355,30 +392,35 @@
       align-self: flex-start;
     }
 
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
+    /* ── ACCORDION ────────────────────────────── */
+    .accordion { display: flex; flex-direction: column; gap: 12px; }
 
-    .module {
+    .acc-item {
       background: var(--navy2);
       border: 1px solid rgba(255,255,255,.07);
-      border-radius: 16px;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+    .acc-item.open,
+    .acc-item:hover { border-color: rgba(232,96,28,.35); }
+
+    .acc-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
       padding: 24px 28px;
       display: flex;
       align-items: center;
       gap: 20px;
-      transition: border-color .2s, background .2s;
-    }
-    .module:hover {
-      border-color: rgba(232,96,28,.3);
-      background: var(--navy3);
+      text-align: left;
     }
 
-    .module-num {
-      width: 44px; height: 44px;
-      min-width: 44px;
+    .acc-num {
+      width: 46px; height: 46px;
+      min-width: 46px;
       background: var(--orange);
       border-radius: 12px;
       display: flex;
@@ -386,12 +428,120 @@
       justify-content: center;
       font-weight: 900;
       font-size: 1rem;
+      transition: background .2s;
+    }
+    .acc-item.open .acc-num { background: var(--orange2); }
+
+    .acc-title-wrap { flex: 1; }
+
+    .acc-title {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+      display: block;
     }
 
-    .module-name {
-      font-size: .95rem;
-      font-weight: 600;
-      line-height: 1.3;
+    .acc-subtitle {
+      font-size: .78rem;
+      color: var(--gray);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .acc-arrow {
+      width: 32px; height: 32px;
+      min-width: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, transform .3s;
+    }
+    .acc-arrow svg { width: 16px; height: 16px; stroke: var(--gray); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .acc-item.open .acc-arrow { background: rgba(232,96,28,.15); transform: rotate(180deg); }
+    .acc-item.open .acc-arrow svg { stroke: var(--orange); }
+
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .38s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-item.open .acc-body { max-height: 700px; }
+
+    .acc-inner {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 24px 28px 28px 94px;
+    }
+
+    .acc-desc {
+      font-size: .93rem;
+      color: var(--light);
+      line-height: 1.72;
+      margin-bottom: 20px;
+    }
+
+    .acc-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .acc-topic {
+      background: rgba(232,96,28,.08);
+      border: 1px solid rgba(232,96,28,.18);
+      color: var(--light);
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: .78rem;
+      font-weight: 500;
+    }
+
+    .acc-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .acc-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      color: var(--gray);
+      line-height: 1.55;
+    }
+
+    .acc-bullets li::before {
+      content: '';
+      width: 6px; height: 6px;
+      min-width: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      margin-top: 7px;
+    }
+
+    .acc-effect {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(232,96,28,.07);
+      border: 1px solid rgba(232,96,28,.2);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: .88rem;
+      color: var(--light);
+      line-height: 1.55;
+    }
+
+    .acc-effect::before {
+      content: '👉';
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
     /* ── PRICING ──────────────────────────────── */
@@ -435,14 +585,7 @@
       border-radius: 100px;
     }
 
-    .price-type {
-      font-size: .8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      color: var(--gray);
-      margin-bottom: 8px;
-    }
+    .price-type { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--gray); margin-bottom: 8px; }
 
     .price-main {
       font-size: 3.5rem;
@@ -460,12 +603,13 @@
       color: var(--orange);
     }
 
-    .price-note {
-      font-size: .8rem;
+    .price-note { font-size: .8rem; color: var(--gray); margin-top: 8px; margin-bottom: 20px; }
+
+    .price-saving {
+      font-size: .85rem;
       color: var(--gray);
-      margin-top: 8px;
-      margin-bottom: 20px;
     }
+    .price-saving strong { color: var(--orange2); }
 
     .price-original {
       display: inline-flex;
@@ -475,15 +619,10 @@
       border-radius: 8px;
       padding: 8px 14px;
       font-size: .85rem;
+      margin-top: 8px;
     }
-
-    .price-original s {
-      color: var(--gray);
-    }
-
-    .price-original strong {
-      color: var(--orange);
-    }
+    .price-original s { color: var(--gray); }
+    .price-original strong { color: var(--orange); }
 
     .subsidy-info {
       margin-top: 48px;
@@ -506,20 +645,49 @@
       letter-spacing: -0.04em;
       white-space: nowrap;
     }
-
     .subsidy-pct span { font-size: 2rem; }
 
-    .subsidy-text h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 6px;
+    .subsidy-text h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+    .subsidy-text p  { font-size: .9rem; color: var(--gray); max-width: 480px; }
+
+    /* ── QUOTE ────────────────────────────────── */
+    .quote-section { background: var(--navy2); }
+
+    .quote-block {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .subsidy-text p {
-      font-size: .9rem;
-      color: var(--gray);
-      max-width: 480px;
+    .quote-block blockquote {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      position: relative;
+      padding: 0 24px;
     }
+
+    .quote-block blockquote::before {
+      content: '"';
+      position: absolute;
+      left: -8px; top: -20px;
+      font-size: 6rem;
+      color: var(--orange);
+      font-family: Georgia, serif;
+      line-height: 1;
+      opacity: .5;
+    }
+
+    .quote-author {
+      margin-top: 24px;
+      font-size: .88rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .quote-author strong { color: var(--light); }
 
     /* ── TRAINER ──────────────────────────────── */
     .trainer-wrap {
@@ -529,9 +697,7 @@
       align-items: center;
     }
 
-    .trainer-photo-wrap {
-      position: relative;
-    }
+    .trainer-photo-wrap { position: relative; }
 
     .trainer-photo {
       width: 320px;
@@ -592,11 +758,81 @@
       font-weight: 500;
     }
 
-    /* ── REGISTER ─────────────────────────────── */
-    .register {
-      background: var(--navy2);
-      text-align: center;
+    /* ── INFO ─────────────────────────────────── */
+    .info { background: var(--navy2); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
     }
+
+    .info-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 18px;
+      padding: 28px 24px;
+    }
+
+    .info-card-label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .info-card-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    .info-card-sub {
+      font-size: .82rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .contacts-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .contact-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 18px;
+      padding: 24px 28px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .contact-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-name { font-size: .95rem; font-weight: 700; }
+    .contact-detail { font-size: .82rem; color: var(--gray); margin-top: 2px; line-height: 1.6; }
+    .contact-detail a { color: var(--orange); text-decoration: none; }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    /* ── REGISTER ─────────────────────────────── */
+    .register { text-align: center; }
 
     .register .section-title { margin: 0 auto 12px; }
     .register .section-desc  { margin: 0 auto 48px; }
@@ -604,23 +840,14 @@
     .register-box {
       max-width: 600px;
       margin: 0 auto;
-      background: var(--navy3);
+      background: var(--navy2);
       border: 1px solid rgba(232,96,28,.25);
       border-radius: 24px;
       padding: 48px;
     }
 
-    .register-box h3 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .register-box p {
-      color: var(--gray);
-      font-size: .9rem;
-      margin-bottom: 32px;
-    }
+    .register-box h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+    .register-box p  { color: var(--gray); font-size: .9rem; margin-bottom: 32px; }
 
     .register-actions {
       display: flex;
@@ -629,15 +856,8 @@
       gap: 16px;
     }
 
-    .register-link-small {
-      font-size: .8rem;
-      color: var(--gray);
-    }
-
-    .register-link-small a {
-      color: var(--orange);
-      text-decoration: none;
-    }
+    .register-link-small { font-size: .8rem; color: var(--gray); }
+    .register-link-small a { color: var(--orange); text-decoration: none; }
     .register-link-small a:hover { text-decoration: underline; }
 
     /* ── FOOTER ───────────────────────────────── */
@@ -652,23 +872,8 @@
       flex-wrap: wrap;
     }
 
-    footer p {
-      font-size: .8rem;
-      color: var(--gray);
-    }
-
-    footer a {
-      color: var(--orange);
-      text-decoration: none;
-    }
-
-    /* ── DIVIDER ──────────────────────────────── */
-    .divider {
-      width: 56px; height: 4px;
-      background: var(--orange);
-      border-radius: 2px;
-      margin: 20px 0 32px;
-    }
+    footer p { font-size: .8rem; color: var(--gray); }
+    footer a  { color: var(--orange); text-decoration: none; }
 
     /* ── RESPONSIVE ───────────────────────────── */
     @media (max-width: 900px) {
@@ -677,23 +882,25 @@
         padding-top: 120px;
         text-align: center;
       }
-      .hero-stats { justify-content: center; }
-      .hero-actions { justify-content: center; }
+      .hero-stats    { justify-content: center; }
+      .hero-actions  { justify-content: center; }
       .hero-image-wrap { order: -1; }
       .hero-subsidy-badge { top: 20px; left: 10px; }
-      .hero-photo { width: 300px; }
-      .trainer-wrap { grid-template-columns: 1fr; text-align: center; }
+      .hero-photo    { width: 300px; }
+      .trainer-wrap  { grid-template-columns: 1fr; text-align: center; }
       .trainer-photo { width: 260px; margin: 0 auto; }
       .trainer-photo-wrap::after { display: none; }
-      .trainer-tags { justify-content: center; }
-      .section-desc { margin: 0 auto; }
-      .divider { margin-left: auto; margin-right: auto; }
+      .trainer-tags  { justify-content: center; }
+      .section-desc  { margin: 0 auto; }
+      .divider       { margin-left: auto; margin-right: auto; }
     }
 
     @media (max-width: 600px) {
       section { padding: 64px 5%; }
-      .register-box { padding: 32px 24px; }
+      .register-box { padding: 32px 20px; }
       .subsidy-info { flex-direction: column; }
+      .acc-inner    { padding: 20px; }
+      .acc-trigger  { padding: 18px 20px; }
     }
   </style>
 </head>
@@ -714,10 +921,14 @@
 <!-- ── HERO ───────────────────────────────────── -->
 <section class="hero" id="hero">
   <div class="hero-content">
-    <div class="hero-badge">Akademia AI · Edycja 2025</div>
-    <h1>Zostań liderem<br><span class="accent">AI</span> w swojej<br>branży</h1>
-    <p class="hero-sub">Praktyczne szkolenie dla właścicieli firm, managerów i liderów, którzy chcą wdrożyć sztuczną inteligencję w swoich organizacjach.</p>
+    <div class="hero-badge">Akademia AI · Łódź 2026</div>
+    <h1>Zostań liderem<br><span class="accent">AI</span> w swojej<br>organizacji</h1>
+    <p class="hero-sub">Kompleksowy, 70-godzinny program warsztatowy, który przygotuje Cię do roli lidera innowacji. Od zaawansowanego promptowania przez automatyzację procesów – aż po zarządzanie bezpieczeństwem i etyką AI.</p>
     <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num">70h</span>
+        <span class="hero-stat-label">Intensywnych warsztatów</span>
+      </div>
       <div>
         <span class="hero-stat-num">8</span>
         <span class="hero-stat-label">Modułów</span>
@@ -742,94 +953,372 @@
       <span class="num">93%</span>
       <span class="label">Dofinansowania</span>
     </div>
-    <img src="assets/szymon.jpg" alt="Szymon Kapturkiewicz – prowadzący" class="hero-photo" />
+    <img src="assets/szymon.jpg" alt="Szymon Kapturkiewicz – prowadzący Akademię AI" class="hero-photo" />
   </div>
 </section>
 
-<!-- ── DLACZEGO WARTO ──────────────────────────── -->
-<section class="why" id="dlaczego">
-  <div class="section-label">Dlaczego warto</div>
-  <h2 class="section-title">Co zyskujesz<br>dzięki szkoleniu?</h2>
+<!-- ── DLA KOGO ────────────────────────────────── -->
+<section class="forwhom" id="dla-kogo">
+  <div class="section-label">Dla kogo</div>
+  <h2 class="section-title">To szkolenie jest<br>dla Ciebie, jeśli…</h2>
   <div class="divider"></div>
-  <p class="section-desc">Szkolenie zostało zaprojektowane, by przełożyć teorię na konkretne działania w Twojej firmie – od strategii po wdrożenie.</p>
+  <p class="section-desc">Akademia AI została zaprojektowana dla osób, które podejmują decyzje biznesowe i chcą świadomie wprowadzać AI do swoich organizacji.</p>
 
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+  <div class="forwhom-grid">
+    <div class="fw-card">
+      <div class="fw-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
       </div>
-      <h3>Uporządkujesz strategię AI</h3>
-      <p>Stworzysz jasną wizję wykorzystania AI w swojej organizacji, dopasowaną do specyfiki branży i celów biznesowych.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <div>
+        <h3>Właściciel firmy lub członek zarządu</h3>
+        <p>Chcesz skalować biznes i zdobyć przewagę rynkową, zanim zrobi to konkurencja.</p>
       </div>
-      <h3>Zidentyfikujesz procesy do wdrożenia</h3>
-      <p>Nauczysz się analizować procesy biznesowe i wskazywać te, które przyniosą największe korzyści po automatyzacji.</p>
     </div>
-    <div class="why-card">
-      <div class="why-icon">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    <div class="fw-card">
+      <div class="fw-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </div>
-      <h3>Zaprojektujesz roadmapę działań</h3>
-      <p>Wyjdziesz ze szkolenia z gotowym, konkretnym planem wdrożenia AI – krokami, zasobami i harmonogramem.</p>
+      <div>
+        <h3>Dyrektor operacyjny lub technologiczny</h3>
+        <p>Odpowiadasz za rozwój struktur i chcesz wdrażać AI na poziomie systemowym.</p>
+      </div>
     </div>
-    <div class="why-card">
-      <div class="why-icon">
+    <div class="fw-card">
+      <div class="fw-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div>
+        <h3>Manager lub lider zespołu</h3>
+        <p>Zarządzasz sprzedażą, marketingiem, HR lub administracją i szukasz narzędzi AI na co dzień.</p>
+      </div>
+    </div>
+    <div class="fw-card">
+      <div class="fw-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div>
+        <h3>Osoba odpowiedzialna za innowacje</h3>
+        <p>Chcesz usystematyzować wiedzę o generatywnej AI i przełożyć ją na konkretne inicjatywy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CO ZYSKASZ ──────────────────────────────── -->
+<section id="co-zyskasz">
+  <div class="section-label">Co zyskasz</div>
+  <h2 class="section-title">6 wymiernych korzyści<br>ze szkolenia</h2>
+  <div class="divider"></div>
+  <p class="section-desc">Każda korzyść jest konkretna i mierzalna – wychodzisz ze szkolenia z narzędziami gotowymi do użycia od pierwszego dnia.</p>
+
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      </div>
+      <h3>Przewaga rynkowa</h3>
+      <p>Zaczniesz wdrażać rozwiązania AI, zanim zrobi to Twoja konkurencja – i zbudujesz trwałą przewagę operacyjną.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3>80% mniej czasu na nudne zadania</h3>
+      <p>Zautomatyzujesz powtarzalne procesy i odzyskasz godziny tygodniowo na realne zarządzanie i strategię.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
         <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
       </div>
-      <h3>Poznasz bezpieczeństwo i governance</h3>
-      <p>Dowiesz się, jak wdrażać AI w sposób odpowiedzialny, zgodny z przepisami i bezpieczny dla organizacji i klientów.</p>
+      <h3>Pełne bezpieczeństwo</h3>
+      <p>Nauczysz się korzystać z AI zgodnie z RODO i chronić dane firmy – bez ryzyka prawnego i reputacyjnego.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      </div>
+      <h3>Certyfikat Lidera AI</h3>
+      <p>Staniesz się ekspertem od innowacji z oficjalnym certyfikatem potwierdzającym wiedzę i kompetencje.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <h3>Wielkie oszczędności</h3>
+      <p>Szkolenie warte 7 000 zł dostępne już od 490 zł dzięki dofinansowaniu – to ponad 6 500 zł w kieszeni.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <h3>Gotowy plan działania</h3>
+      <p>Wychodzisz z własną roadmapą wdrożenia AI, gotową do natychmiastowego użytku w Twojej organizacji.</p>
     </div>
   </div>
 </section>
 
 <!-- ── PROGRAM ─────────────────────────────────── -->
-<section id="program">
+<section id="program" style="background: var(--navy2);">
   <div class="program-header">
     <div>
       <div class="section-label">Program szkolenia</div>
-      <h2 class="section-title">8 praktycznych<br>modułów</h2>
+      <h2 class="section-title">8 modułów,<br>70 godzin praktyki</h2>
       <div class="divider"></div>
-      <p class="section-desc">Od podstaw do strategii wdrożenia – kompleksowy kurs prowadzony przez eksperta.</p>
+      <p class="section-desc">Kompleksowy, warsztatowy program – od fundamentów AI po gotową roadmapę wdrożenia. Kliknij moduł, by zobaczyć szczegóły.</p>
     </div>
     <div class="program-tag">Od wiedzy do wdrożenia</div>
   </div>
 
-  <div class="modules-grid">
-    <div class="module">
-      <div class="module-num">1</div>
-      <div class="module-name">Fundamenty AI</div>
+  <div class="accordion" id="accordion">
+
+    <!-- 1 -->
+    <div class="acc-item open">
+      <button class="acc-trigger" aria-expanded="true">
+        <div class="acc-num">I</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Fundamenty sztucznej inteligencji w biznesie</span>
+          <span class="acc-subtitle">Czym jest AI i jak ją trafnie dobierać do problemów firmy</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Zaczniesz od solidnych podstaw – bez zbędnego technicznego żargonu. Poznasz kluczowe pojęcia, które będą Ci towarzyszyć przez całe szkolenie, oraz nauczysz się odróżniać różne typy modeli AI i rozumieć ich ograniczenia.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Modele predykcyjne vs generatywne</span>
+            <span class="acc-topic">Prompt i kontekst</span>
+            <span class="acc-topic">Token, RAG, fine-tuning</span>
+            <span class="acc-topic">Ograniczenia i ryzyka AI</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Wprowadzenie do AI – co to jest, jak działa i dlaczego zmienia zasady gry</li>
+            <li>Modele predykcyjne vs. generatywne – kiedy stosować które i jakie przynoszą korzyści</li>
+            <li>Kluczowe pojęcia: prompt, kontekst, token, RAG, fine-tuning – wyjaśnione praktycznie</li>
+            <li>Ograniczenia i ryzyka technologii – co AI potrafi, a czego nie potrafi (i nigdy nie będzie)</li>
+            <li>Przegląd dostępnych narzędzi: ChatGPT, Claude, Copilot, Gemini i ekosystem AI</li>
+          </ul>
+          <div class="acc-effect">Nauczysz się rozróżniać rodzaje modeli AI i wybierać te, które najlepiej rozwiążą konkretne problemy w Twojej firmie.</div>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">2</div>
-      <div class="module-name">Procesy do wdrożenia</div>
+
+    <!-- 2 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">II</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Identyfikacja procesów o wysokim potencjale wdrożenia</span>
+          <span class="acc-subtitle">Gdzie AI przyniesie największy zwrot w Twojej organizacji</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Nauczysz się metodycznie przeglądać procesy w swojej firmie i oceniać, które z nich są gotowe na AI. Odkryjesz różnicę między lokalnym usprawnieniem a transformacją systemową oraz nauczysz się definiować mierzalne cele wdrożeniowe.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Mapowanie procesów</span>
+            <span class="acc-topic">Identyfikacja wąskich gardeł</span>
+            <span class="acc-topic">KPI wdrożeniowe</span>
+            <span class="acc-topic">Zmiana systemowa vs. lokalna</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Metodologia mapowania procesów biznesowych i identyfikacja wąskich gardeł</li>
+            <li>Definiowanie mierzalnych celów wdrożeniowych (KPI) – jak mierzyć sukces AI</li>
+            <li>Różnica między usprawnieniem lokalnym a zmianą systemową – kiedy inwestować w co</li>
+            <li>Matryca gotowości procesów do automatyzacji AI – praktyczne narzędzie decyzyjne</li>
+            <li>Warsztaty: inwentaryzacja procesów w Twojej firmie i wybór kandydata do pilotażu</li>
+          </ul>
+          <div class="acc-effect">Zidentyfikujesz najbardziej czasochłonne procesy w swojej organizacji i ocenisz ich potencjał do natychmiastowej automatyzacji.</div>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">3</div>
-      <div class="module-name">Projektowanie rozwiązań</div>
+
+    <!-- 3 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">III</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Projektowanie rozwiązań AI – od problemu do koncepcji</span>
+          <span class="acc-subtitle">Jak zbudować profesjonalną strukturę projektu AI</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Przejdziesz przez pełen cykl projektowania rozwiązania AI – od zdefiniowania problemu, przez proof of concept, aż po gotowy MVP. Zrozumiesz rolę danych jako fundamentu każdego systemu AI i nauczysz się tworzyć wymagania funkcjonalne i niefunkcjonalne.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">POC, MVP, pilotaż, rollout</span>
+            <span class="acc-topic">Wymagania funkcjonalne</span>
+            <span class="acc-topic">Rola danych</span>
+            <span class="acc-topic">Build vs. Buy</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Etapy projektu AI: POC → MVP → pilotaż → rollout – co to oznacza w praktyce</li>
+            <li>Wymagania funkcjonalne i niefunkcjonalne – jak opisać system AI dla dostawcy lub zespołu</li>
+            <li>Rola danych w projektowaniu systemu – jakość, dostępność, przetwarzanie</li>
+            <li>Build vs. Buy vs. Customize – jak wybrać właściwe podejście dla Twojej firmy</li>
+            <li>Praca z dostawcami i partnerami technologicznymi – co negocjować, na co uważać</li>
+          </ul>
+          <div class="acc-effect">Zaprojektujesz profesjonalną strukturę projektu AI od fazy koncepcyjnej (POC) po gotowy model do wdrożenia (MVP).</div>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">4</div>
-      <div class="module-name">Bezpieczeństwo i governance</div>
+
+    <!-- 4 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">IV</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Bezpieczeństwo, odpowiedzialność i zgodność</span>
+          <span class="acc-subtitle">Odpowiedzialne AI zgodne z RODO i EU AI Act</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Wdrożenie AI niesie ze sobą odpowiedzialność prawną, etyczną i operacyjną. Ten moduł wyposaży Cię w wiedzę o regulacjach i narzędziach AI governance, które chronią Twoją firmę, pracowników i klientów – i budują zaufanie do Twoich rozwiązań.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">RODO a dane w AI</span>
+            <span class="acc-topic">Własność intelektualna</span>
+            <span class="acc-topic">Halucynacje modeli</span>
+            <span class="acc-topic">AI Governance</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Dane osobowe, poufność i własność intelektualna w kontekście korzystania z AI</li>
+            <li>Ryzyko halucynacji i uprzedzeń modeli – jak wykrywać i minimalizować błędy AI</li>
+            <li>Podstawy AI Governance w organizacji – polityki, procedury, odpowiedzialność</li>
+            <li>EU AI Act w praktyce – jakie obowiązki ma Twoja firma w świetle nowych regulacji</li>
+            <li>Co można podawać do modeli AI, a co stanowi ryzyko dla firmy – praktyczne zasady</li>
+          </ul>
+          <div class="acc-effect">Stworzysz ramy bezpiecznego i zgodnego z prawem korzystania z AI oraz wewnętrzną politykę AI dla swojej organizacji.</div>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">5</div>
-      <div class="module-name">Generatywna AI w pracy lidera</div>
+
+    <!-- 5 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">V</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Generatywna AI w pracy lidera – praktyka operacyjna</span>
+          <span class="acc-subtitle">Narzędzia AI, które oszczędzają czas menedżera każdego dnia</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Najbardziej praktyczny moduł kursu – bezpośrednio przy narzędziach. Opanujesz zaawansowane techniki promptowania, nauczysz się oceniać jakość odpowiedzi AI i zbudujesz własnego asystenta wspierającego codzienną pracę menedżerską.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Struktura skutecznego promptu</span>
+            <span class="acc-topic">Generowanie kreatywne vs analityczne</span>
+            <span class="acc-topic">Ocena jakości odpowiedzi</span>
+            <span class="acc-topic">Asystenci AI</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Struktura skutecznego promptu – jak pisać, by model rozumiał Twój kontekst i cel</li>
+            <li>Różnice między generowaniem kreatywnym a analitycznym – kiedy stosować które</li>
+            <li>Weryfikacja i ocena jakości odpowiedzi modelu – jak nie dać się zmylić przez AI</li>
+            <li>Budowa asystentów AI wspierających codzienne zadania: maile, raporty, analizy, decyzje</li>
+            <li>Przegląd narzędzi produktywności opartych na AI – Copilot, Notion AI, Perplexity i inne</li>
+          </ul>
+          <div class="acc-effect">Zbudujesz spersonalizowanego asystenta AI i zaczniesz oszczędzać co najmniej kilka godzin tygodniowo na powtarzalnych zadaniach menedżerskich.</div>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">6</div>
-      <div class="module-name">Testowanie i iteracje</div>
+
+    <!-- 6 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">VI</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Testowanie i iteracyjne doskonalenie rozwiązań</span>
+          <span class="acc-subtitle">Jak sprawdzać, mierzyć i poprawiać rozwiązania AI</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Projekty AI rzadko działają idealnie od pierwszego uruchomienia. Ten moduł uczy metodycznego podejścia do testowania – jak przeprowadzić proof of concept, ocenić jego wyniki według mierzalnych kryteriów i podjąć świadomą decyzję o dalszym działaniu.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Metodologia testowania POC</span>
+            <span class="acc-topic">Analiza wyników</span>
+            <span class="acc-topic">Kryteria skuteczności</span>
+            <span class="acc-topic">Iteracja i doskonalenie</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Metodologia testowania POC w projektach AI – jak zaprojektować rzetelny eksperyment</li>
+            <li>Analiza wyników i ocena skuteczności rozwiązania według ustalonych kryteriów</li>
+            <li>Typowe błędy i pułapki w testowaniu AI – jak ich unikać już na etapie planowania</li>
+            <li>Podejmowanie decyzji: skalować, iterować czy zatrzymać projekt – na jakiej podstawie</li>
+            <li>Budowanie cyklu ciągłego doskonalenia dla działających rozwiązań AI</li>
+          </ul>
+          <div class="acc-effect">Przeprowadzisz pełny cykl testowania swojego rozwiązania AI i będziesz wiedzieć, kiedy jest ono gotowe na wdrożenie produkcyjne.</div>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">7</div>
-      <div class="module-name">Strategia wdrożenia</div>
+
+    <!-- 7 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">VII</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Strategia wdrożenia AI w organizacji</span>
+          <span class="acc-subtitle">Jak przeprowadzić firmę przez transformację AI</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Największe wyzwanie wdrożeń AI to nie technologia – to ludzie i organizacja. Moduł uczy, jak zarządzać zmianą, budować zaangażowanie zespołu i tworzyć konkretną, wielomiesięczną mapę wdrożenia AI dostosowaną do Twojej firmy.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Zarządzanie zmianą</span>
+            <span class="acc-topic">Monitoring efektów</span>
+            <span class="acc-topic">Roadmapa organizacji</span>
+            <span class="acc-topic">Kultura innowacji</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Zarządzanie zmianą (change management) w projektach transformacji AI – jak nie stracić zespołu</li>
+            <li>Komunikacja wdrożenia AI do pracowników: obawy, opór, angażowanie i motywowanie</li>
+            <li>Tworzenie mapy wdrożenia (roadmapy) dla organizacji – harmonogram, zasoby, kamienie milowe</li>
+            <li>Monitoring efektów transformacji – jak mierzyć postęp i raportować wyniki zarządowi</li>
+            <li>Budowanie kultury organizacyjnej otwartej na eksperymentowanie z AI</li>
+          </ul>
+          <div class="acc-effect">Opracujesz gotową roadmapę wdrożenia AI dla swojej organizacji z konkretnym harmonogramem, zasobami i wskaźnikami sukcesu.</div>
+        </div>
+      </div>
     </div>
-    <div class="module">
-      <div class="module-num">8</div>
-      <div class="module-name">Walidacja i podsumowanie</div>
+
+    <!-- 8 -->
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false">
+        <div class="acc-num">VIII</div>
+        <div class="acc-title-wrap">
+          <span class="acc-title">Walidacja i podsumowanie</span>
+          <span class="acc-subtitle">Test końcowy, certyfikat i Twój plan na 90 dni</span>
+        </div>
+        <div class="acc-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <p class="acc-desc">Ostatni moduł to czas na weryfikację wiedzy, wyciągnięcie wniosków i stworzenie osobistego planu działania. Zakończysz szkolenie z certyfikatem i konkretnym zestawem inicjatyw AI gotowych do uruchomienia w Twojej firmie.</p>
+          <div class="acc-topics">
+            <span class="acc-topic">Test końcowy</span>
+            <span class="acc-topic">Najczęstsze błędy projektowe</span>
+            <span class="acc-topic">Certyfikat Akademii AI</span>
+            <span class="acc-topic">Plan 90 dni</span>
+          </div>
+          <ul class="acc-bullets">
+            <li>Test końcowy obejmujący zagadnienia ze wszystkich modułów – weryfikacja kompetencji</li>
+            <li>Omówienie najczęstszych błędów projektowych i jak ich uniknąć w praktyce</li>
+            <li>Indywidualne sesje feedbackowe – omówienie Twojego projektu z prowadzącym</li>
+            <li>Wydanie certyfikatów ukończenia Akademii AI Textilimpex</li>
+            <li>Twój osobisty plan działania: 3 konkretne inicjatywy AI do uruchomienia w ciągu 90 dni</li>
+          </ul>
+          <div class="acc-effect">Otrzymasz certyfikat Akademii AI i wyjdziesz z gotowym, spersonalizowanym planem wdrożenia AI – do natychmiastowego użytku.</div>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -838,26 +1327,22 @@
   <div class="section-label">Cennik</div>
   <h2 class="section-title">Inwestycja<br>w Twój rozwój</h2>
   <div class="divider"></div>
-  <p class="section-desc">Dzięki dofinansowaniu ze środków publicznych szkolenie o wartości 7 000 zł jest dostępne w ułamku ceny.</p>
+  <p class="section-desc">Dzięki dofinansowaniu ze środków publicznych szkolenie o wartości 7 000 zł jest dostępne w ułamku ceny – tylko dla firm i osób z województwa łódzkiego.</p>
 
   <div class="pricing-cards">
     <div class="price-card">
       <div class="price-type">Osoba fizyczna</div>
       <div class="price-main">490<span class="price-currency">zł</span></div>
-      <div class="price-note">cena po dofinansowaniu</div>
-      <div class="price-original">
-        <s>7 000 zł</s>
-        <strong>–93%</strong>
-      </div>
+      <div class="price-note">cena po dofinansowaniu (93%)</div>
+      <div class="price-original"><s>7 000 zł</s><strong>–93%</strong></div>
+      <p class="price-saving" style="margin-top:14px"><strong>Oszczędzasz 6 510 zł</strong> dzięki dofinansowaniu</p>
     </div>
     <div class="price-card featured">
       <div class="price-type">Firma / pracownik</div>
       <div class="price-main">1&nbsp;050<span class="price-currency">zł</span></div>
-      <div class="price-note">cena po dofinansowaniu</div>
-      <div class="price-original">
-        <s>7 000 zł</s>
-        <strong>–85%</strong>
-      </div>
+      <div class="price-note">cena po dofinansowaniu (85%)</div>
+      <div class="price-original"><s>7 000 zł</s><strong>–85%</strong></div>
+      <p class="price-saving" style="margin-top:14px"><strong>Oszczędzasz 5 950 zł</strong> dzięki dofinansowaniu</p>
     </div>
   </div>
 
@@ -865,13 +1350,21 @@
     <div class="subsidy-pct">93<span>%</span></div>
     <div class="subsidy-text">
       <h3>Dofinansowanie ze środków publicznych</h3>
-      <p>Szkolenie jest objęte dofinansowaniem, dzięki któremu płacisz tylko za niewielką część rzeczywistej wartości. Wartość szkolenia wynosi 7 000 zł brutto.</p>
+      <p>Nawet do 93% kosztów pokrywanych dla osób fizycznych z województwa łódzkiego. 85% dofinansowania dla przedsiębiorców, pracodawców i ich pracowników. Wartość szkolenia: 7 000 zł brutto.</p>
     </div>
   </div>
 </section>
 
+<!-- ── CYTAT ───────────────────────────────────── -->
+<section class="quote-section">
+  <div class="quote-block">
+    <blockquote>AI to nowa elektryczność. Zmieni każdą branżę, w której zostanie włączona.</blockquote>
+    <p class="quote-author">— <strong>Andrew Ng</strong>, współtwórca Google Brain, pionier sztucznej inteligencji</p>
+  </div>
+</section>
+
 <!-- ── PROWADZĄCY ──────────────────────────────── -->
-<section id="prowadzacy">
+<section id="prowadzacy" style="background: var(--navy2);">
   <div class="section-label">Prowadzący</div>
   <div class="trainer-wrap">
     <div class="trainer-photo-wrap">
@@ -879,16 +1372,70 @@
     </div>
     <div>
       <h2 class="trainer-name">Szymon<br>Kapturkiewicz</h2>
-      <div class="trainer-title">Ekspert AI &amp; Transformacja Cyfrowa</div>
+      <div class="trainer-title">Przedsiębiorca technologiczny · Ekspert AI &amp; Transformacji Cyfrowej</div>
       <p class="trainer-bio">
-        Praktyk wdrożeń sztucznej inteligencji w biznesie. Pomaga właścicielom firm i liderom zrozumieć potencjał AI i przekuć go w konkretne rezultaty. Łączy wiedzę techniczną z perspektywą biznesową, co pozwala tworzyć rozwiązania przynoszące realną wartość.
+        Przedsiębiorca technologiczny i ekspert w zakresie transformacji cyfrowej. Specjalizuje się w projektowaniu systemów informatycznych oraz automatyzacji procesów biznesowych z wykorzystaniem AI. Praktyk z 20-letnim doświadczeniem, który łączy kompetencje strategiczne z technicznym know-how.
       </p>
       <div class="trainer-tags">
-        <span class="tag">Strategia AI</span>
+        <span class="tag">20 lat doświadczenia</span>
         <span class="tag">Transformacja cyfrowa</span>
+        <span class="tag">Automatyzacja procesów</span>
+        <span class="tag">Projektowanie systemów</span>
         <span class="tag">Generatywna AI</span>
-        <span class="tag">Wdrożenia biznesowe</span>
         <span class="tag">Leadership</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INFORMACJE ORGANIZACYJNE ───────────────── -->
+<section class="info" id="informacje">
+  <div class="section-label">Informacje organizacyjne</div>
+  <h2 class="section-title">Terminy<br>i miejsce</h2>
+  <div class="divider"></div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-label">Termin</div>
+      <div class="info-card-value">11.07.2026 – 23.08.2026</div>
+      <div class="info-card-sub">Terminy ustalane są indywidualnie – napisz do nas</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Czas trwania</div>
+      <div class="info-card-value">70 godzin zegarowych</div>
+      <div class="info-card-sub">8 dni intensywnych warsztatów</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Miejsce</div>
+      <div class="info-card-value">Łódź, stacjonarnie</div>
+      <div class="info-card-sub">Textilimpex Sp. z o.o., ul. Traugutta 25</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Forma</div>
+      <div class="info-card-value">Warsztaty stacjonarne</div>
+      <div class="info-card-sub">Praktyczne ćwiczenia, case studies, praca na własnych projektach</div>
+    </div>
+  </div>
+
+  <div class="contacts-row">
+    <div class="contact-card">
+      <div class="contact-avatar">S</div>
+      <div>
+        <div class="contact-name">Sylwia Tomasik</div>
+        <div class="contact-detail">
+          <a href="tel:+48510993267">+48 510 993 267</a><br>
+          <a href="mailto:stomasik@textilimpex.pl">stomasik@textilimpex.pl</a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-avatar">A</div>
+      <div>
+        <div class="contact-name">Aleksandra Witczak</div>
+        <div class="contact-detail">
+          <a href="tel:+48510993286">+48 510 993 286</a><br>
+          <a href="mailto:awitczak@textilimpex.pl">awitczak@textilimpex.pl</a>
+        </div>
       </div>
     </div>
   </div>
@@ -899,17 +1446,17 @@
   <div class="section-label">Zapisz się</div>
   <h2 class="section-title">Zarejestruj zainteresowanie</h2>
   <div class="divider" style="margin: 20px auto 32px;"></div>
-  <p class="section-desc">Wypełnij formularz zgłoszeniowy i dołącz do grona liderów, którzy już wykorzystują AI w swoich organizacjach.</p>
+  <p class="section-desc">Wypełnij formularz i dołącz do grona liderów, którzy już wdrażają AI w swoich organizacjach. Skontaktujemy się w ciągu 24 godzin.</p>
 
   <div class="register-box">
     <h3>Wypełnij formularz zgłoszeniowy</h3>
-    <p>Bezpłatna rejestracja zainteresowania. Skontaktujemy się z Tobą w ciągu 24 godzin z dalszymi informacjami.</p>
+    <p>Bezpłatna rejestracja zainteresowania. Pomożemy Ci uzyskać dofinansowanie – Ty rozwijasz kompetencje.</p>
     <div class="register-actions">
       <a href="https://intersynergy.link/akademia-ai-textilimpex" class="btn-primary" target="_blank" rel="noopener">
         Przejdź do formularza →
       </a>
       <span class="register-link-small">
-        Masz pytania? Skontaktuj się przez formularz na <a href="https://intersynergy.link/akademia-ai-textilimpex" target="_blank" rel="noopener">intersynergy.link/akademia-ai-textilimpex</a>
+        Masz pytania? <a href="mailto:stomasik@textilimpex.pl">stomasik@textilimpex.pl</a> · <a href="tel:+48510993267">+48 510 993 267</a>
       </span>
     </div>
   </div>
@@ -917,9 +1464,25 @@
 
 <!-- ── FOOTER ──────────────────────────────────── -->
 <footer>
-  <p>&copy; 2025 Textilimpex. Szkolenie prowadzone przez Szymon Kapturkiewicz.</p>
-  <p>Zapytania: <a href="https://intersynergy.link/akademia-ai-textilimpex" target="_blank" rel="noopener">intersynergy.link/akademia-ai-textilimpex</a></p>
+  <p>&copy; 2026 Textilimpex Sp. z o.o., ul. Traugutta 25, Łódź · Szkolenie prowadzone przez Szymon Kapturkiewicz</p>
+  <p>Formularz: <a href="https://intersynergy.link/akademia-ai-textilimpex" target="_blank" rel="noopener">intersynergy.link/akademia-ai-textilimpex</a></p>
 </footer>
 
+<script>
+  document.querySelectorAll('.acc-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.acc-trigger').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
 </body>
 </html>

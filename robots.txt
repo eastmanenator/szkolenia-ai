@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Projekt jest publicznym landing page'em szkolenia Akademia AI – Textilimpex.
+# Jeśli zostanie dodana mapa witryny, dopisz tutaj dyrektywę Sitemap z pełnym adresem URL.

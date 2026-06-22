@@ -27,6 +27,10 @@
 
     html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 
+    @media (min-width: 1400px) {
+      :root { --container-padding: calc((100vw - var(--container-max)) / 2); }
+    }
+
     ::selection { background: rgba(232,96,28,.45); color: var(--white); }
 
     a:focus-visible, button:focus-visible {

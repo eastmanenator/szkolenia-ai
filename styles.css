@@ -322,6 +322,10 @@ nav.scrolled {
   isolation: isolate;
 }
 
+.hero-image-wrap--no-photo {
+  min-height: 380px;
+}
+
 .hero-image-wrap::before {
   content: '';
   position: absolute;
@@ -2337,7 +2341,7 @@ footer a  { color: var(--orange); text-decoration: none; }
   .nav-inner { width: calc(100% - 24px); }
   section { padding: 64px 20px; }
   .hero-stats { grid-template-columns: repeat(2, max-content); column-gap: 34px; }
-  .hero-image-wrap { min-height: 330px; }
+  .hero-image-wrap { display: none; }
   .hero-image-wrap::before { width: 280px; height: 180px; }
   .hero-image-wrap::after { width: 260px; height: 260px; }
   .hero-subsidy-badge { left: 0; width: 94px; height: 94px; }

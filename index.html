@@ -11,12 +11,15 @@
   <meta property="og:title" content="Akademia AI – Textilimpex | Szkolenie z AI dla liderów biznesu" />
   <meta property="og:description" content="70-godzinny program warsztatowy AI dla właścicieli firm, managerów i liderów. Dofinansowanie do 93%. Prowadzący: Szymon Kapturkiewicz." />
   <meta property="og:url" content="https://eastmanenator.github.io/szkolenia-ai/" />
-  <meta property="og:image" content="https://eastmanenator.github.io/szkolenia-ai/assets/akademia-ai-social.png" />
+  <meta property="og:image" content="https://eastmanenator.github.io/szkolenia-ai/assets/akademia-ai-social.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Grafika promująca szkolenie Akademia AI – Textilimpex z wizerunkiem Szymona Kapturkiewicza" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Akademia AI – Textilimpex | Szkolenie z AI dla liderów biznesu" />
   <meta name="twitter:description" content="70-godzinny program warsztatowy AI dla właścicieli firm, managerów i liderów. Dofinansowanie do 93%. Prowadzący: Szymon Kapturkiewicz." />
-  <meta name="twitter:image" content="https://eastmanenator.github.io/szkolenia-ai/assets/akademia-ai-social.png" />
+  <meta name="twitter:image" content="https://eastmanenator.github.io/szkolenia-ai/assets/akademia-ai-social.jpg" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
@@ -25,6 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" as="image" href="assets/hero-rocket.avif" type="image/avif" fetchpriority="high" />
 </head>
 <body>
 
@@ -52,7 +56,7 @@
     <div class="hero-content">
       <div class="hero-badge">Akademia AI · Łódź 2026</div>
       <h1>Zostań liderem<br><span class="accent">AI</span> w swojej<br>organizacji</h1>
-      <p class="hero-sub">Kompleksowy, 70-godzinny program warsztatowy, który przygotuje Cię do roli lidera innowacji. Od zaawansowanego promptowania przez automatyzację procesów – aż po zarządzanie bezpieczeństwem i etyką AI.</p>
+      <p class="hero-sub">70-godzinny program szkoleniowy z warsztatem, który przygotowuje Cię do roli osoby wprowadzającej innowacyjne rozwiązania oparte o sztuczną inteligencję. Od zaawansowanego promptowania przez automatyzację procesów – aż po zarządzanie bezpieczeństwem i etyką AI.</p>
       <div class="hero-stats">
         <div>
           <span class="hero-stat-num" data-count="70" data-suffix="">70</span>
@@ -60,7 +64,7 @@
         </div>
         <div>
           <span class="hero-stat-num" data-count="8" data-suffix="">8</span>
-          <span class="hero-stat-label">Dni szkoleń i warsztatów</span>
+          <span class="hero-stat-label">Dni szkoleń</span>
         </div>
         <div>
           <span class="hero-stat-num" data-count="93" data-suffix="%">93%</span>
@@ -75,19 +79,14 @@
         <a href="#rejestracja" class="btn-primary">Zarejestruj się</a>
         <a href="#program" class="btn-ghost">Zobacz program</a>
       </div>
-      <div class="hero-tools">
-        <span class="hero-tools-label">Pracujesz na narzędziach:</span>
-        <div class="hero-tools-list">
-          <span class="tool-chip">ChatGPT</span>
-          <span class="tool-chip">Claude</span>
-          <span class="tool-chip">Copilot</span>
-          <span class="tool-chip">Gemini</span>
-          <span class="tool-chip">Perplexity</span>
-        </div>
-      </div>
     </div>
 
     <div class="hero-image-wrap hero-image-wrap--no-photo">
+      <picture class="hero-rocket">
+        <source srcset="assets/hero-rocket.avif" type="image/avif">
+        <source srcset="assets/hero-rocket.webp" type="image/webp">
+        <img src="assets/hero-rocket.png" alt="Stylizowana ilustracja żaglowca napędzanego rakietami – symbol przyspieszenia rozwoju dzięki AI" width="900" height="877" fetchpriority="high" decoding="async">
+      </picture>
       <div class="hero-subsidy-badge">
         <span class="num">93%</span>
         <span class="label">Dofinansowania</span>
@@ -103,11 +102,16 @@
 
 <!-- ── DLA KOGO ────────────────────────────────── -->
 <section class="forwhom" id="dla-kogo">
+  <picture class="section-media section-media--top" aria-hidden="true">
+    <source srcset="assets/dla-kogo-bg.avif" type="image/avif">
+    <source srcset="assets/dla-kogo-bg.webp" type="image/webp">
+    <img src="assets/dla-kogo-bg.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
+  </picture>
   <div class="container-xxl">
     <div class="section-label">Dla kogo</div>
-    <h2 class="section-title">To szkolenie jest<br>dla <span class="accent">Ciebie,</span> jeśli…</h2>
+    <h2 class="section-title">To szkolenie <br class="br-mobile">jest <br class="br-desktop">dla <span class="accent">Ciebie,</span> <br class="br-mobile">jeśli…</h2>
     <div class="divider"></div>
-    <p class="section-desc">Akademia AI została zaprojektowana dla osób, które podejmują decyzje biznesowe i chcą świadomie wprowadzać AI do swoich organizacji.</p>
+    <p class="section-desc">Akademia AI została zaprojektowana dla osób, które podejmują decyzje biznesowe<br class="br-desktop"> i chcą świadomie wprowadzać AI do swoich organizacji.</p>
 
     <div class="forwhom-grid">
       <div class="fw-card">
@@ -163,7 +167,7 @@
   <picture class="section-media" aria-hidden="true">
     <source srcset="assets/co-zyskasz-bg.avif" type="image/avif">
     <source srcset="assets/co-zyskasz-bg.webp" type="image/webp">
-    <img src="assets/co-zyskasz-bg.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+    <img src="assets/co-zyskasz-bg.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
   </picture>
   <div class="container-xxl">
     <div class="section-label">Co zyskasz</div>
@@ -188,7 +192,7 @@
           </div>
           <h3>80% mniej czasu na nudne zadania</h3>
         </div>
-        <p>Zautomatyzujesz powtarzalne procesy i odzyskasz godziny tygodniowo na realne zarządzanie i strategię.</p>
+        <p>Zautomatyzujesz powtarzalne procesy i odzyskasz wiele godzin tygodniowo na realne zarządzanie i strategię.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-head">
@@ -235,7 +239,7 @@
   <picture class="section-media section-media--top" aria-hidden="true">
     <source srcset="assets/program-bg.avif" type="image/avif">
     <source srcset="assets/program-bg.webp" type="image/webp">
-    <img src="assets/program-bg.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+    <img src="assets/program-bg.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
   </picture>
   <div class="container-xxl">
     <div class="program-showcase">
@@ -250,7 +254,7 @@
         <picture>
           <source srcset="assets/program-stack-ai.avif" type="image/avif">
           <source srcset="assets/program-stack-ai.webp" type="image/webp">
-          <img src="assets/program-stack-ai.png" alt="" width="1187" height="1034" loading="lazy" decoding="async">
+          <img src="assets/program-stack-ai.png" alt="" width="713" height="982" loading="lazy" decoding="async">
         </picture>
       </figure>
     </div>
@@ -535,7 +539,7 @@
   <picture class="section-media" aria-hidden="true">
     <source srcset="assets/cennik-bg.avif" type="image/avif">
     <source srcset="assets/cennik-bg.webp" type="image/webp">
-    <img src="assets/cennik-bg.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+    <img src="assets/cennik-bg.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
   </picture>
   <div class="container-xxl">
     <div class="section-label">Cennik</div>
@@ -619,25 +623,40 @@
     <div class="section-label">Prowadzący</div>
     <div class="trainer-wrap">
       <div class="trainer-photo-wrap">
-        <div class="trainer-badge">
-          <span class="num">20</span>
-          <span class="label">lat doświadczenia</span>
-        </div>
-        <img src="assets/szymon.jpg" alt="Szymon Kapturkiewicz" class="trainer-photo" width="900" height="900" loading="lazy" decoding="async" />
+        <picture>
+          <source srcset="assets/szymon.avif" type="image/avif">
+          <source srcset="assets/szymon.webp" type="image/webp">
+          <img src="assets/szymon.jpg" alt="Szymon Kapturkiewicz" class="trainer-photo" width="900" height="900" loading="lazy" decoding="async" />
+        </picture>
       </div>
       <div>
-        <h2 class="trainer-name">Szymon<br>Kapturkiewicz</h2>
-        <div class="trainer-title">Przedsiębiorca technologiczny · Ekspert AI &amp; Transformacji Cyfrowej</div>
+        <h2 class="trainer-name">Szymon Kapturkiewicz</h2>
+        <div class="trainer-title">Ekspert AI &amp; Transformacji Cyfrowej</div>
         <p class="trainer-bio">
           Przedsiębiorca technologiczny i ekspert w zakresie transformacji cyfrowej. Specjalizuje się w projektowaniu systemów informatycznych oraz automatyzacji procesów biznesowych z wykorzystaniem AI. Praktyk z 20-letnim doświadczeniem, który łączy kompetencje strategiczne z technicznym know-how.
         </p>
         <div class="trainer-tags">
-          <span class="tag">20 lat doświadczenia</span>
           <span class="tag">Transformacja cyfrowa</span>
           <span class="tag">Automatyzacja procesów</span>
           <span class="tag">Projektowanie systemów</span>
           <span class="tag">Generatywna AI</span>
-          <span class="tag">Leadership</span>
+        </div>
+        <div class="trainer-socials" aria-label="Profile społecznościowe Szymona Kapturkiewicza">
+          <a href="https://www.linkedin.com/in/szymon-kapturkiewicz/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Szymona Kapturkiewicza">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.53V9H7.1v11.45Z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/its.szymon.kapturkiewicz/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Szymona Kapturkiewicza">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.08 8.02h2.3V4.14c-.4-.05-1.76-.16-3.34-.16-3.3 0-5.56 2.02-5.56 5.72v3.22H3.76v4.34h3.72V24h4.56v-6.74h3.56l.57-4.34h-4.13V10.13c0-1.25.35-2.11 2.04-2.11Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/szymon.kapturkiewicz" target="_blank" rel="noopener noreferrer" aria-label="Instagram Szymona Kapturkiewicza">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7.35A4.65 4.65 0 1 1 12 16.65 4.65 4.65 0 0 1 12 7.35Zm0 2A2.65 2.65 0 1 0 12 14.65 2.65 2.65 0 0 0 12 9.35Zm5.05-2.08a1.08 1.08 0 1 1-2.16 0 1.08 1.08 0 0 1 2.16 0Z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@szymon.kapturkiewicz" target="_blank" rel="noopener noreferrer" aria-label="TikTok Szymona Kapturkiewicza">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.62 2c.32 2.75 1.86 4.39 4.54 4.56v3.1a7.82 7.82 0 0 1-4.49-1.39v6.87c0 3.47-2.11 6.86-6.22 6.86-3.38 0-6.15-2.31-6.15-5.86 0-4.03 3.47-6.12 7.02-5.29v3.28c-1.65-.52-3.64.22-3.64 1.99 0 1.33 1.05 2.32 2.55 2.32 1.82 0 2.8-1.1 2.8-3.3V2h3.59Z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@szymon.kapturkiewicz" target="_blank" rel="noopener noreferrer" aria-label="YouTube Szymona Kapturkiewicza">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.58 12 3.58 12 3.58s-7.5 0-9.38.5A3 3 0 0 0 .5 6.2 31.28 31.28 0 0 0 0 12a31.28 31.28 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3 3 0 0 0 2.12-2.12A31.28 31.28 0 0 0 24 12a31.28 31.28 0 0 0-.5-5.8ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -649,7 +668,7 @@
   <picture class="section-media" aria-hidden="true">
     <source srcset="assets/schedule-bg.avif" type="image/avif">
     <source srcset="assets/schedule-bg.webp" type="image/webp">
-    <img src="assets/schedule-bg.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+    <img src="assets/schedule-bg.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
   </picture>
   <div class="container-xxl">
     <div class="schedule-header">
@@ -820,12 +839,12 @@
   <picture class="section-media" aria-hidden="true">
     <source srcset="assets/register-bg.avif" type="image/avif">
     <source srcset="assets/register-bg.webp" type="image/webp">
-    <img src="assets/register-bg.png" alt="" width="1672" height="941" loading="lazy" decoding="async">
+    <img src="assets/register-bg.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
   </picture>
   <div class="container-xxl">
     <h2 class="section-title">Zarejestruj się</h2>
     <div class="divider divider--centered"></div>
-    <p class="section-desc">Wypełnij formularz i dołącz do grona liderów, którzy już wdrażają AI w swoich organizacjach. Skontaktujemy się z Tobą w ciągu <strong>24 godzin</strong>.</p>
+    <p class="section-desc">Wypełnij formularz i dołącz do grona liderów, którzy już wdrażają AI w swoich organizacjach. Skontaktujemy się z Tobą w ciągu <strong>48 godzin</strong>.</p>
 
     <ul class="register-perks" aria-label="Co zyskujesz">
       <li class="register-perk">

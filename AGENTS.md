@@ -2,7 +2,13 @@
 
 ## Kontekst projektu
 
-To statyczny landing page szkolenia „Akademia AI – Textilimpex”. Najważniejszym plikiem aplikacji jest `index.html`, który zawiera strukturę HTML, style CSS i skrypty JavaScript. Zasoby graficzne znajdują się w katalogu `assets/`.
+To statyczny landing page szkolenia „Akademia AI – Textilimpex”. Struktura:
+
+- `index.html` — struktura HTML (semantyczna).
+- `styles.css` — wszystkie style CSS.
+- `main.js` — cały JavaScript.
+- `assets/` — zasoby graficzne.
+- `build.js` — skrypt wersjonujący (cache-busting): dopisuje `?v=<hash treści>` do odwołań do `styles.css`, `main.js` oraz obrazków. Uruchamiany automatycznie w GitHub Actions przed deployem (patrz `.github/workflows/static.yml`). Źródła w repo trzymamy „czyste” (bez hashy) — hashe wstrzykiwane są tylko w pipeline. Skrypt jest idempotentny i bez zależności (czysty Node).
 
 ## Priorytety przy zmianach
 
@@ -16,7 +22,8 @@ To statyczny landing page szkolenia „Akademia AI – Textilimpex”. Najważni
 
 - Preferuj semantyczny HTML.
 - Utrzymuj czytelne nazwy klas zgodne z istniejącą konwencją.
-- Nie przenoś CSS i JS do osobnych plików, jeśli zmiana jest niewielka i nie wymaga refaktoryzacji.
+- Style trzymaj w `styles.css`, a JavaScript w `main.js` — nie wstawiaj ich z powrotem inline do `index.html`.
+- Nie dopisuj ręcznie `?v=...` do ścieżek zasobów — robi to automatycznie `build.js` przy deployu.
 - Nie umieszczaj bloków `try/catch` wokół importów.
 - Zachowuj kompatybilność z nowoczesnymi przeglądarkami bez konieczności kompilacji.
 

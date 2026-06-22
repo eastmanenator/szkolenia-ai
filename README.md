@@ -17,23 +17,42 @@ Strona ma zachęcać do rejestracji zainteresowania szkoleniem poprzez jasne prz
 
 ```text
 .
-├── index.html          # kompletna statyczna strona HTML/CSS/JS
-├── assets/
-│   ├── logo.png        # logo widoczne w nawigacji
-│   └── szymon.jpg      # zdjęcie prowadzącego
+├── index.html          # struktura HTML strony
+├── styles.css          # wszystkie style CSS
+├── main.js             # cały JavaScript
+├── build.js            # wersjonowanie zasobów (cache-busting) przy deployu
+├── assets/             # zasoby graficzne (logo, zdjęcia, tła sekcji)
 ├── robots.txt          # dyrektywy dla robotów indeksujących
-└── AGENTS.md           # instrukcje pracy dla Codex i innych agentów AI
+├── AGENTS.md           # instrukcje pracy dla Codex i innych agentów AI
+└── .github/workflows/static.yml  # deploy na GitHub Pages
 ```
 
 ## Technologia
 
-Projekt jest statyczną stroną bez procesu budowania:
+Projekt jest statyczną stroną bez bundlera ani frameworka:
 
-- HTML5,
-- CSS osadzony w `index.html`,
-- JavaScript osadzony w `index.html`,
+- HTML5 w `index.html`,
+- CSS w osobnym pliku `styles.css`,
+- JavaScript w osobnym pliku `main.js`,
 - font Inter ładowany z Google Fonts,
-- obrazy lokalne w katalogu `assets/`.
+- obrazy lokalne w katalogu `assets/`,
+- lekki skrypt `build.js` (czysty Node) wersjonujący zasoby przy deployu.
+
+### Wersjonowanie zasobów (cache-busting)
+
+Aby po wdrożeniu przeglądarki i CDN na pewno pobrały nowe wersje plików, `build.js`
+dopisuje do odwołań do `styles.css`, `main.js` oraz obrazków parametr
+`?v=<hash treści pliku>`. Skrót zmienia się tylko wtedy, gdy zmieni się zawartość
+pliku, więc niezmienione zasoby nadal korzystają z cache.
+
+Skrypt jest idempotentny, nie ma żadnych zależności i uruchamiany jest automatycznie
+w GitHub Actions tuż przed publikacją (krok w `.github/workflows/static.yml`). Pliki
+źródłowe w repozytorium pozostają „czyste” — hashe wstrzykiwane są wyłącznie w pipeline.
+Ręczne uruchomienie (np. do podglądu wyniku):
+
+```bash
+node build.js
+```
 
 ## Uruchomienie lokalne
 

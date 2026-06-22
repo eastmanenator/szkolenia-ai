@@ -52,16 +52,30 @@ function versionize(ref) {
   return `${pathPart}?v=${hashOf(absPath)}${fragment}`;
 }
 
+function versionizeSrcset(srcset) {
+  return srcset.split(',').map(candidate => {
+    const trimmed = candidate.trim();
+    if (!trimmed) return candidate;
+
+    const parts = trimmed.split(/\s+/);
+    const ref = parts.shift();
+    if (!isLocalAsset(ref)) return candidate;
+
+    return [versionize(ref), ...parts].join(' ');
+  }).join(', ');
+}
+
 function processFile(file) {
   const absFile = path.join(ROOT, file);
   let content = fs.readFileSync(absFile, 'utf8');
   let count = 0;
 
-  // 1) Atrybuty HTML: href="..." / src="..."
-  content = content.replace(/\b(href|src)=("|')([^"']+)\2/g, (m, attr, q, ref) => {
+  // 1) Atrybuty HTML: href="..." / src="..." / srcset="..."
+  content = content.replace(/\b(href|src|srcset)=("|')([^"']+)\2/g, (m, attr, q, ref) => {
     if (!isLocalAsset(ref)) return m;
     count++;
-    return `${attr}=${q}${versionize(ref)}${q}`;
+    const nextRef = attr === 'srcset' ? versionizeSrcset(ref) : versionize(ref);
+    return `${attr}=${q}${nextRef}${q}`;
   });
 
   // 2) CSS url(...) — z apostrofami, cudzysłowami lub bez.

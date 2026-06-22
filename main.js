@@ -1,17 +1,4 @@
-document.querySelectorAll('.acc-trigger').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.closest('.acc-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.acc-item.open').forEach(o => {
-      o.classList.remove('open');
-      o.querySelector('.acc-trigger').setAttribute('aria-expanded', 'false');
-    });
-    if (!isOpen) {
-      item.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
-    }
-  });
-});
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const scheduleEditions = {
   'week-1': {
@@ -86,9 +73,61 @@ const scheduleEditions = {
   }
 };
 
-const scheduleDialog = document.getElementById('schedule-dialog');
 const monthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
-let lastScheduleTrigger = null;
+
+const setAccordionItem = (item, shouldOpen) => {
+  const trigger = item.querySelector('.acc-trigger');
+  const body = item.querySelector('.acc-body');
+  if (!trigger || !body) return;
+
+  trigger.setAttribute('aria-expanded', String(shouldOpen));
+
+  if (shouldOpen) {
+    item.classList.add('open');
+    body.style.height = '0px';
+    requestAnimationFrame(() => {
+      body.style.height = `${body.scrollHeight}px`;
+    });
+    return;
+  }
+
+  body.style.height = `${body.scrollHeight}px`;
+  requestAnimationFrame(() => {
+    item.classList.remove('open');
+    body.style.height = '0px';
+  });
+};
+
+const initAccordion = () => {
+  const accordion = document.getElementById('accordion');
+  if (!accordion) return;
+
+  accordion.querySelectorAll('.acc-item').forEach(item => {
+    const body = item.querySelector('.acc-body');
+    if (!body) return;
+
+    body.style.height = item.classList.contains('open') ? 'auto' : '0px';
+    body.addEventListener('transitionend', event => {
+      if (event.propertyName === 'height' && item.classList.contains('open')) {
+        body.style.height = 'auto';
+      }
+    });
+  });
+
+  accordion.addEventListener('click', event => {
+    const trigger = event.target.closest('.acc-trigger');
+    if (!trigger || !accordion.contains(trigger)) return;
+
+    const item = trigger.closest('.acc-item');
+    const isOpen = item.classList.contains('open');
+
+    accordion.querySelectorAll('.acc-item.open').forEach(openItem => {
+      setAccordionItem(openItem, false);
+    });
+
+    if (!isOpen) setAccordionItem(item, true);
+  });
+};
 
 const eventForDay = (edition, isoDay) => {
   for (const session of edition.sessions) {
@@ -123,14 +162,14 @@ const renderMonth = (edition, year, monthIndex) => {
   `;
 };
 
-const renderScheduleDialog = edition => {
-  scheduleDialog.style.setProperty('--modal-edition', edition.color);
-  document.getElementById('schedule-dialog-title').textContent = edition.title;
-  document.getElementById('schedule-dialog-sub').textContent = edition.subtitle;
-  document.getElementById('schedule-dialog-range').textContent = edition.range;
-  document.getElementById('schedule-dialog-recruitment').textContent = edition.recruitment;
-  document.getElementById('schedule-dialog-note').textContent = edition.note;
-  document.getElementById('schedule-dialog-rows').innerHTML = edition.sessions.map(session => `
+const renderScheduleDialog = (dialog, edition) => {
+  dialog.style.setProperty('--modal-edition', edition.color);
+  dialog.querySelector('#schedule-dialog-title').textContent = edition.title;
+  dialog.querySelector('#schedule-dialog-sub').textContent = edition.subtitle;
+  dialog.querySelector('#schedule-dialog-range').textContent = edition.range;
+  dialog.querySelector('#schedule-dialog-recruitment').textContent = edition.recruitment;
+  dialog.querySelector('#schedule-dialog-note').textContent = edition.note;
+  dialog.querySelector('#schedule-dialog-rows').innerHTML = edition.sessions.map(session => `
     <tr>
       <td>${session.no}</td>
       <td>${session.date}<small>${session.type}</small></td>
@@ -139,76 +178,123 @@ const renderScheduleDialog = edition => {
   `).join('');
 
   const monthKeys = [...new Set(edition.sessions.flatMap(session => session.days.map(day => day.slice(0, 7))))];
-  document.getElementById('schedule-dialog-calendar').innerHTML = monthKeys.map(key => {
+  dialog.querySelector('#schedule-dialog-calendar').innerHTML = monthKeys.map(key => {
     const [year, month] = key.split('-').map(Number);
     return renderMonth(edition, year, month - 1);
   }).join('');
 };
 
-document.querySelectorAll('[data-edition]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const edition = scheduleEditions[btn.dataset.edition];
-    if (!edition || !scheduleDialog) return;
-    lastScheduleTrigger = btn;
-    renderScheduleDialog(edition);
-    scheduleDialog.showModal();
+const initSchedule = () => {
+  const dialog = document.getElementById('schedule-dialog');
+  const filterButtons = document.querySelectorAll('[data-schedule-filter]');
+  const tiles = document.querySelectorAll('[data-schedule-categories]');
+  const tilesGrid = document.querySelector('.edition-tiles');
+  let lastTrigger = null;
+  let filterTimer = null;
+
+  const applyFilter = filter => {
+    filterButtons.forEach(btn => {
+      const isActive = btn.dataset.scheduleFilter === filter;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+
+    tiles.forEach(tile => {
+      const categories = (tile.dataset.scheduleCategories || '').split(/\s+/);
+      tile.hidden = !(filter === 'all' || categories.includes(filter));
+    });
+  };
+
+  const setFilter = filter => {
+    if (!tilesGrid || prefersReducedMotion) {
+      applyFilter(filter);
+      return;
+    }
+
+    clearTimeout(filterTimer);
+    tilesGrid.classList.add('is-filtering');
+    filterTimer = setTimeout(() => {
+      applyFilter(filter);
+      tilesGrid.classList.remove('is-filtering');
+    }, 120);
+  };
+
+  document.querySelectorAll('[data-edition]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const edition = scheduleEditions[btn.dataset.edition];
+      if (!edition || !dialog) return;
+
+      lastTrigger = btn;
+      renderScheduleDialog(dialog, edition);
+      dialog.showModal();
+    });
   });
-});
 
-document.querySelectorAll('[data-close-schedule]').forEach(btn => {
-  btn.addEventListener('click', () => scheduleDialog.close());
-});
-
-if (scheduleDialog) {
-  scheduleDialog.addEventListener('click', event => {
-    if (event.target === scheduleDialog) scheduleDialog.close();
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.scheduleFilter));
   });
-  scheduleDialog.addEventListener('close', () => {
-    if (lastScheduleTrigger) lastScheduleTrigger.focus();
+
+  if (!dialog) return;
+
+  dialog.querySelectorAll('[data-close-schedule]').forEach(btn => {
+    btn.addEventListener('click', () => dialog.close());
   });
-}
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
 
-// Odsłanianie sekcji przy scrollowaniu
-if (!reduceMotion && 'IntersectionObserver' in window) {
+  dialog.addEventListener('close', () => {
+    if (lastTrigger) lastTrigger.focus();
+  });
+};
+
+const initReveal = () => {
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
   const revealTargets = document.querySelectorAll(
     '.section-label, .section-title, .divider, .section-desc, .program-tag, ' +
     '.fw-card, .benefit-card, .acc-item, .price-card, .subsidy-info, ' +
-    '.quote-block, .trainer-wrap, .edition-tile, ' +
+    '.quote-block, .trainer-wrap, .schedule-filter, .edition-tile, ' +
     '.info-card, .contact-card, .register-box'
   );
-  const staggered = '.fw-card, .benefit-card, .acc-item, .price-card, .edition-tile, .info-card, .contact-card';
-  const io = new IntersectionObserver(entries => {
+  const staggered = '.fw-card, .benefit-card, .acc-item, .price-card, .schedule-filter, .edition-tile, .info-card, .contact-card';
+
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
+
       const el = entry.target;
-      io.unobserve(el);
       const delay = (parseFloat(el.style.getPropertyValue('--d')) || 0) * 1000;
+      observer.unobserve(el);
       el.classList.add('visible');
+
       setTimeout(() => {
         el.classList.remove('reveal', 'visible');
         el.style.removeProperty('--d');
       }, 700 + delay);
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
   revealTargets.forEach(el => {
     if (el.matches(staggered)) {
       const idx = Array.from(el.parentElement.children).indexOf(el);
-      el.style.setProperty('--d', (idx * 0.07) + 's');
+      el.style.setProperty('--d', `${idx * 0.07}s`);
     }
     el.classList.add('reveal');
-    io.observe(el);
+    observer.observe(el);
   });
-}
+};
 
-// Animowane liczniki statystyk w hero
-if (!reduceMotion) {
+const initCounters = () => {
+  if (prefersReducedMotion) return;
+
   document.querySelectorAll('.hero-stat-num[data-count]').forEach(el => {
     const target = parseInt(el.dataset.count, 10);
     const suffix = el.dataset.suffix || '';
     const duration = 1200;
     let start;
+
     const tick = now => {
       if (start === undefined) start = now;
       const t = Math.min((now - start) / duration, 1);
@@ -216,22 +302,46 @@ if (!reduceMotion) {
       el.textContent = Math.round(target * eased) + suffix;
       if (t < 1) requestAnimationFrame(tick);
     };
+
     setTimeout(() => requestAnimationFrame(tick), 300);
   });
-}
-
-// Nav po scrollu, pasek postępu, przycisk „do góry"
-const navEl = document.querySelector('nav');
-const progressEl = document.querySelector('.scroll-progress');
-const toTopEl = document.querySelector('.to-top');
-const onScroll = () => {
-  const y = window.scrollY;
-  navEl.classList.toggle('scrolled', y > 24);
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  progressEl.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
-  toTopEl.classList.toggle('show', y > 600);
 };
-document.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
 
-toTopEl.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+const initScrollUi = () => {
+  const nav = document.querySelector('nav');
+  const progress = document.querySelector('.scroll-progress');
+  const toTop = document.querySelector('.to-top');
+  if (!nav || !progress || !toTop) return;
+
+  let ticking = false;
+
+  const update = () => {
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+
+    nav.classList.toggle('scrolled', y > 24);
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
+    toTop.classList.toggle('show', y > 600);
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+
+  document.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  update();
+
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+};
+
+initAccordion();
+initSchedule();
+initReveal();
+initCounters();
+initScrollUi();

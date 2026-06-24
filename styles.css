@@ -1485,6 +1485,33 @@ section > .container-xxl {
   font-size: 1.05em;
 }
 
+.price-breakdown {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.price-breakdown div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  background: rgba(255,255,255,.035);
+  color: rgba(220,230,244,.84);
+  font-size: .88rem;
+  line-height: 1.35;
+}
+
+.price-breakdown strong {
+  flex-shrink: 0;
+  color: var(--white);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .subsidy-info {
   margin-top: 26px;
   border: 1px solid rgba(232,96,28,.78);
@@ -1536,7 +1563,7 @@ section > .container-xxl {
 .subsidy-pct span { font-size: .48em; }
 
 .subsidy-text h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
-.subsidy-text p  { font-size: .9rem; color: var(--gray); max-width: 480px; }
+.subsidy-text p  { font-size: .9rem; color: var(--gray); max-width: none; }
 
 /* ── QUOTE ────────────────────────────────── */
 .quote-section {

@@ -1,0 +1,14 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon files can appear on custom folders in macOS.
+Icon
+Icon?
+
+# Thumbnails and Finder metadata.
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+

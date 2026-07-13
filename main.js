@@ -1,5 +1,44 @@
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const initEmbeddedVersionRefresh = () => {
+  if (window.self === window.top) return;
+
+  const currentVersion = document.querySelector('meta[name="app-version"]')?.content;
+  if (!currentVersion || currentVersion === 'development') return;
+
+  let isChecking = false;
+  const checkForNewVersion = async () => {
+    if (isChecking) return;
+    isChecking = true;
+
+    try {
+      const versionUrl = new URL('version.json', document.baseURI);
+      versionUrl.searchParams.set('cache-bust', Date.now().toString());
+
+      const response = await fetch(versionUrl, { cache: 'no-store' });
+      if (!response.ok) return;
+
+      const { version: deployedVersion } = await response.json();
+      if (!deployedVersion || deployedVersion === currentVersion) return;
+
+      const freshUrl = new URL(window.location.href);
+      if (freshUrl.searchParams.get('site-version') === deployedVersion) return;
+
+      freshUrl.searchParams.set('site-version', deployedVersion);
+      window.location.replace(freshUrl);
+    } catch {
+      // Brak sieci lub chwilowo niedostępny plik wersji nie blokuje strony.
+    } finally {
+      isChecking = false;
+    }
+  };
+
+  checkForNewVersion();
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') checkForNewVersion();
+  });
+};
+
 const scheduleEditions = {
   'week-1': {
     title: 'I edycja tygodniowa',
@@ -419,6 +458,7 @@ const initAnchorScroll = () => {
 
 initAccordion();
 initSchedule();
+initEmbeddedVersionRefresh();
 initReveal();
 initCounters();
 initScrollUi();

@@ -25,6 +25,14 @@ const ROOT = __dirname;
 // Pliki, w których przepisujemy odwołania do zasobów.
 const FILES_TO_PROCESS = ['index.html', 'styles.css'];
 
+// Identyfikator wdrożenia służy osadzonej stronie do wykrywania nowej wersji
+// bez konieczności zmieniania adresu src po stronie właściciela iframe.
+const sourceVersion = process.env.GITHUB_SHA || ['index.html', 'styles.css', 'main.js']
+  .map(file => fs.readFileSync(path.join(ROOT, file)))
+  .reduce((hash, content) => hash.update(content), crypto.createHash('sha256'))
+  .digest('hex');
+const appVersion = sourceVersion.slice(0, 12);
+
 // Krótki, deterministyczny skrót treści pliku.
 const hashCache = new Map();
 function hashOf(absPath) {
@@ -85,6 +93,13 @@ function processFile(file) {
     return `url(${q}${versionize(ref)}${q})`;
   });
 
+  if (file === 'index.html') {
+    content = content.replace(
+      /(<meta name="app-version" content=")[^"]+(" \/>)/,
+      `$1${appVersion}$2`
+    );
+  }
+
   fs.writeFileSync(absFile, content);
   console.log(`  ${file}: zwersjonowano ${count} odwołań`);
 }
@@ -93,4 +108,9 @@ console.log('Wersjonowanie zasobów (cache-busting)…');
 for (const file of FILES_TO_PROCESS) {
   processFile(file);
 }
+fs.writeFileSync(
+  path.join(ROOT, 'version.json'),
+  `${JSON.stringify({ version: appVersion })}\n`
+);
+console.log(`  version.json: wersja ${appVersion}`);
 console.log('Gotowe.');

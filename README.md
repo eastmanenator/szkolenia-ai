@@ -98,6 +98,11 @@ zapisany w `.claude/launch.json`.
 `assets/`. Przetwarza `index.html` oraz `styles.css`, obsługuje także `srcset`
 i `url(...)` oraz zastępuje wcześniej wygenerowany parametr wersji.
 
+Podczas wdrożenia skrypt zapisuje też identyfikator publikacji w metadanych
+`index.html` i generuje `version.json`. Gdy landing page działa w iframe,
+porównuje te wartości bez użycia cache i po wykryciu nowego wdrożenia odświeża
+samą ramkę z parametrem `site-version`. Kod strony osadzającej nie wymaga zmian.
+
 Skrypt **modyfikuje pliki źródłowe w bieżącym katalogu**. W normalnym trybie
 uruchamia go wyłącznie GitHub Actions na świeżym checkoutcie przed utworzeniem
 artefaktu. Nie zapisuj wygenerowanych parametrów `?v=...` w repozytorium.

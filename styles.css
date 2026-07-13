@@ -14,7 +14,12 @@
   --section-gutter: clamp(20px, 4vw, 48px);
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+html {
+  min-height: 100%;
+  background-color: var(--navy);
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
 
 ::selection { background: rgba(232,96,28,.45); color: var(--white); }
 
@@ -24,8 +29,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 body {
+  min-height: 100%;
   font-family: 'Inter', system-ui, sans-serif;
-  background: var(--navy);
+  background-color: var(--navy);
   color: var(--white);
   line-height: 1.6;
   overflow-x: hidden;
@@ -489,6 +495,21 @@ section { padding: 96px var(--section-gutter); }
   body > section:not(.hero) {
     content-visibility: auto;
     contain-intrinsic-size: auto 900px;
+  }
+
+  body.is-anchor-scrolling > section:not(.hero) {
+    content-visibility: visible;
+  }
+}
+
+/* Na wąskich ekranach sekcje są znacznie wyższe niż ich rozmiar zastępczy.
+   Renderowanie ich od razu zapobiega zmianom wysokości strony podczas skoku do kotwicy. */
+@media (max-width: 900px) {
+  @supports (content-visibility: auto) {
+    body > section:not(.hero) {
+      content-visibility: visible;
+      contain-intrinsic-size: none;
+    }
   }
 }
 
@@ -3184,6 +3205,12 @@ footer a  { color: var(--orange); text-decoration: none; }
   .info .section-title {
     max-width: 11ch;
     font-size: clamp(2.1rem, 9vw, 3rem);
+  }
+  .schedule-heading { text-align: left; }
+  .schedule-heading .divider,
+  .schedule-heading .schedule-intro {
+    margin-left: 0;
+    margin-right: 0;
   }
   .schedule-filters {
     display: grid;

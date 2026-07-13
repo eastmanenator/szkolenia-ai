@@ -340,14 +340,33 @@ const initScrollUi = () => {
   });
 };
 
-// Płynne przewijanie po kliknięciu linków w menu — własna animacja, aby móc
-// kontrolować prędkość (o 20% wolniej niż domyślny scroll przeglądarki).
-const initMenuScroll = () => {
-  const links = document.querySelectorAll('nav a[href^="#"]');
+// Płynne przewijanie po kliknięciu lokalnych linków — własna animacja, aby
+// wszystkie CTA działały tak samo i dało się kontrolować ich prędkość.
+const initAnchorScroll = () => {
+  const links = document.querySelectorAll('a[href^="#"]');
   if (!links.length) return;
 
   const offset = 84; // odpowiada scroll-padding-top
   const slowdown = 1.2; // 20% wolniej
+  const root = document.documentElement;
+  let animationFrame = 0;
+  let previousInlineScrollBehavior = '';
+
+  const beginAnimation = () => {
+    if (animationFrame) cancelAnimationFrame(animationFrame);
+    else previousInlineScrollBehavior = root.style.scrollBehavior;
+
+    // Kolejne kroki animacji muszą być natychmiastowe. W przeciwnym razie
+    // globalne scroll-behavior: smooth animuje każdy z nich ponownie.
+    root.style.scrollBehavior = 'auto';
+    document.body.classList.add('is-anchor-scrolling');
+  };
+
+  const endAnimation = () => {
+    animationFrame = 0;
+    root.style.scrollBehavior = previousInlineScrollBehavior;
+    document.body.classList.remove('is-anchor-scrolling');
+  };
 
   links.forEach(link => {
     link.addEventListener('click', event => {
@@ -357,6 +376,7 @@ const initMenuScroll = () => {
 
       event.preventDefault();
       history.pushState(null, '', hash);
+      beginAnimation();
 
       const destY = hash === '#'
         ? 0
@@ -364,12 +384,16 @@ const initMenuScroll = () => {
 
       if (prefersReducedMotion) {
         window.scrollTo({ top: destY, behavior: 'auto' });
+        endAnimation();
         return;
       }
 
       const startY = window.scrollY;
       const distance = destY - startY;
-      if (distance === 0) return;
+      if (distance === 0) {
+        endAnimation();
+        return;
+      }
 
       // Bazowa długość zbliżona do natywnego płynnego scrolla, wydłużona o 20%.
       const baseDuration = Math.min(Math.max(Math.abs(distance) * 0.28, 240), 520);
@@ -381,10 +405,14 @@ const initMenuScroll = () => {
         const t = Math.min((now - start) / duration, 1);
         const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
         window.scrollTo({ top: startY + distance * eased, behavior: 'auto' });
-        if (t < 1) requestAnimationFrame(tick);
+        if (t < 1) {
+          animationFrame = requestAnimationFrame(tick);
+          return;
+        }
+        endAnimation();
       };
 
-      requestAnimationFrame(tick);
+      animationFrame = requestAnimationFrame(tick);
     });
   });
 };
@@ -394,4 +422,4 @@ initSchedule();
 initReveal();
 initCounters();
 initScrollUi();
-initMenuScroll();
+initAnchorScroll();

@@ -1,85 +1,127 @@
 # Akademia AI – Textilimpex
 
-Jednostronicowa strona landing page promująca szkolenie **Akademia AI** organizowane przez Textilimpex w Łodzi. Projekt prezentuje program 70-godzinnych warsztatów dla właścicieli firm, managerów i liderów biznesu zainteresowanych praktycznym wdrażaniem sztucznej inteligencji w organizacji.
+Statyczny, jednostronicowy landing page szkolenia **Akademia AI** organizowanego
+przez Textilimpex. Strona przedstawia 64-godzinny program dla właścicieli firm,
+managerów i liderów oraz kieruje do zewnętrznego formularza zgłoszeniowego.
 
-## Cel projektu
+Publiczny adres strony: <https://eastmanenator.github.io/szkolenia-ai/>
 
-Strona ma zachęcać do rejestracji zainteresowania szkoleniem poprzez jasne przedstawienie:
+## Najważniejsze informacje
 
-- wartości programu i korzyści biznesowych,
-- grupy docelowej szkolenia,
-- 8-modułowego programu warsztatowego,
-- zasad dofinansowania do 93%,
-- sylwetki prowadzącego,
-- informacji organizacyjnych oraz kontaktu.
+- szkolenie obejmuje 8 modułów i 64 godziny zegarowe,
+- zajęcia odbywają się stacjonarnie w Łodzi lub w formule hybrydowej,
+- dostępnych jest pięć edycji od października 2026 do stycznia 2027,
+- cena bazowa wynosi 6 400 zł, a deklarowane dofinansowanie sięga 93%,
+- prowadzącym jest Szymon Kapturkiewicz,
+- rejestracja odbywa się przez formularz zewnętrzny.
 
-## Struktura
+Aktualne ceny, terminy i zasady dofinansowania należy zawsze weryfikować w
+treści strony przed publikacją zmian.
+
+## Architektura
+
+Projekt nie korzysta z frameworka, bundlera ani menedżera pakietów. Nie ma
+pliku `package.json` ani etapu kompilacji aplikacji.
 
 ```text
 .
-├── index.html          # struktura HTML strony
-├── styles.css          # wszystkie style CSS
-├── main.js             # cały JavaScript
-├── build.js            # wersjonowanie zasobów (cache-busting) przy deployu
-├── assets/             # zasoby graficzne (logo, zdjęcia, tła sekcji)
-├── robots.txt          # dyrektywy dla robotów indeksujących
-├── AGENTS.md           # instrukcje pracy dla Codex i innych agentów AI
-└── .github/workflows/static.yml  # deploy na GitHub Pages
+├── index.html                     # semantyczna struktura i treść strony
+├── styles.css                     # cały wygląd i warianty responsywne
+├── main.js                        # interakcje i dane szczegółowego harmonogramu
+├── build.js                       # cache-busting zasobów przed wdrożeniem
+├── assets/                        # obrazy, logo, favikony i grafika social media
+├── site.webmanifest               # manifest aplikacji
+├── robots.txt                     # dyrektywy dla robotów
+├── .github/workflows/static.yml   # publikacja w GitHub Pages
+├── AGENTS.md                      # instrukcje dla agentów AI
+└── CLAUDE.md                      # instrukcje dla Claude Code
 ```
 
-## Technologia
+Strona używa HTML5, CSS i czystego JavaScriptu. Font Inter jest pobierany z
+Google Fonts. Obrazy sekcji są podawane przez `<picture>` w formatach AVIF,
+WebP i JPG; grafika hero ma dodatkowo wersję PNG.
 
-Projekt jest statyczną stroną bez bundlera ani frameworka:
+## Sekcje i interakcje
 
-- HTML5 w `index.html`,
-- CSS w osobnym pliku `styles.css`,
-- JavaScript w osobnym pliku `main.js`,
-- font Inter ładowany z Google Fonts,
-- obrazy lokalne w katalogu `assets/`,
-- lekki skrypt `build.js` (czysty Node) wersjonujący zasoby przy deployu.
+Kolejność głównych części strony:
 
-### Wersjonowanie zasobów (cache-busting)
+1. nawigacja i hero z animowanymi statystykami,
+2. „Dla kogo” i „Co zyskasz”,
+3. program w formie akordeonu z 8 modułami,
+4. cennik i informacje o dofinansowaniu,
+5. cytat ekspercki i profil prowadzącego,
+6. terminy, miejsce i dane kontaktowe,
+7. FAQ z wymaganiami i zasadami ukończenia,
+8. rejestracja oraz stopka.
 
-Aby po wdrożeniu przeglądarki i CDN na pewno pobrały nowe wersje plików, `build.js`
-dopisuje do odwołań do `styles.css`, `main.js` oraz obrazków parametr
-`?v=<hash treści pliku>`. Skrót zmienia się tylko wtedy, gdy zmieni się zawartość
-pliku, więc niezmienione zasoby nadal korzystają z cache.
+`main.js` obsługuje:
 
-Skrypt jest idempotentny, nie ma żadnych zależności i uruchamiany jest automatycznie
-w GitHub Actions tuż przed publikacją (krok w `.github/workflows/static.yml`). Pliki
-źródłowe w repozytorium pozostają „czyste” — hashe wstrzykiwane są wyłącznie w pipeline.
-Ręczne uruchomienie (np. do podglądu wyniku):
+- akordeon programu,
+- filtrowanie edycji szkolenia,
+- modal `<dialog>` z kalendarzem i tabelą zjazdów,
+- animacje wejścia sekcji i liczniki w hero,
+- stan nawigacji, pasek postępu i przycisk powrotu na górę,
+- płynne przewijanie linków nawigacyjnych.
 
-```bash
-node build.js
-```
+Animacje są wyłączane lub upraszczane przy `prefers-reduced-motion`.
+
+## Gdzie aktualizować treść
+
+| Zakres | Plik | Uwagi |
+| --- | --- | --- |
+| Teksty, program, ceny, kafelki edycji, kontakt i CTA | `index.html` | Zachowaj treść po polsku i istniejącą hierarchię sekcji. |
+| Szczegółowe daty, godziny, tryb zjazdów i terminy rekrutacji | `main.js` | Dane znajdują się w obiekcie `scheduleEditions`. |
+| Kolory, layout, responsywność i animacje | `styles.css` | Korzystaj z istniejących zmiennych CSS i klas. |
+| Obrazy i ikony | `assets/` | Dla teł sekcji utrzymuj komplet AVIF/WebP/JPG. |
+| SEO i social preview | `<head>` w `index.html` | Canonical, Open Graph i Twitter wskazują publiczny adres GitHub Pages. |
+| Formularz zgłoszeniowy | `index.html` | Ten sam zewnętrzny URL występuje w kilku CTA. |
+
+Terminy mają dwa poziomy prezentacji: skrócone daty startu są zapisane w
+`index.html`, a pełne harmonogramy w `scheduleEditions` w `main.js`. Przy zmianie
+edycji trzeba zaktualizować oba miejsca oraz kartę „Najbliższy start”.
 
 ## Uruchomienie lokalne
 
-Najprościej otworzyć plik `index.html` w przeglądarce albo uruchomić prosty serwer HTTP:
+Uruchom serwer z katalogu repozytorium:
 
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 4173
 ```
 
-Następnie przejdź do `http://localhost:8000`.
+Następnie otwórz <http://localhost:4173>. Ten sam sposób uruchomienia jest
+zapisany w `.claude/launch.json`.
 
-## Główne sekcje strony
+## Cache-busting
 
-- Hero z najważniejszym komunikatem i CTA.
-- Sekcja „Dla kogo”.
-- Sekcja korzyści.
-- Akordeon z 8 modułami programu.
-- Cennik i informacje o dofinansowaniu.
-- Cytat ekspercki.
-- Profil prowadzącego.
-- Informacje organizacyjne i dane kontaktowe.
-- Sekcja rejestracji kierująca do formularza zewnętrznego.
+`build.js` oblicza 10-znakowy skrót SHA-256 treści zasobu i dopisuje
+`?v=<hash>` do lokalnych odwołań do `styles.css`, `main.js` i plików z
+`assets/`. Przetwarza `index.html` oraz `styles.css`, obsługuje także `srcset`
+i `url(...)` oraz zastępuje wcześniej wygenerowany parametr wersji.
 
-## Zasady rozwoju
+Skrypt **modyfikuje pliki źródłowe w bieżącym katalogu**. W normalnym trybie
+uruchamia go wyłącznie GitHub Actions na świeżym checkoutcie przed utworzeniem
+artefaktu. Nie zapisuj wygenerowanych parametrów `?v=...` w repozytorium.
 
-- Zachowuj prostą, statyczną architekturę projektu.
-- Nie dodawaj frameworków ani bundlera bez wyraźnej potrzeby.
-- Dbaj o dostępność: semantyczny HTML, widoczny focus, poprawne opisy obrazów i działanie z klawiatury.
-- Zachowuj spójność wizualną z obecną paletą: granat, pomarańcz, biel i odcienie szarości.
-- Po zmianach wizualnych sprawdzaj stronę w widoku desktopowym i mobilnym.
+## Weryfikacja zmian
+
+Minimalna kontrola po każdej zmianie:
+
+```bash
+git diff --check
+```
+
+Po zmianach HTML, CSS lub JavaScript uruchom lokalny serwer i sprawdź co
+najmniej widok desktopowy oraz mobilny. Zweryfikuj akordeon, filtry terminów,
+otwieranie i zamykanie modala, CTA, przewijanie oraz widoczny focus klawiatury.
+Nie ma obecnie automatycznego zestawu testów.
+
+## Wdrożenie
+
+Push do gałęzi `main` lub ręczne uruchomienie workflow publikuje stronę przez
+`.github/workflows/static.yml`. Pipeline:
+
+1. pobiera repozytorium,
+2. konfiguruje GitHub Pages,
+3. uruchamia `node build.js`,
+4. wysyła katalog główny jako artefakt,
+5. wdraża artefakt do GitHub Pages.

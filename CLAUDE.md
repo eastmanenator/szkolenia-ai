@@ -4,119 +4,126 @@ Guidance for Claude Code when working in this repository.
 
 ## Project overview
 
-This repo is a single-page landing site for **Akademia AI – Textilimpex**, a 70-hour AI
-training program (in Łódź, Poland) aimed at business owners, managers, and leaders. The
-site is in Polish and exists to drive registrations of interest via an external form.
+This repository contains the Polish single-page landing site for **Akademia AI
+– Textilimpex**, a 64-hour AI training program for business owners, managers,
+and leaders. Its primary conversion is an external registration form.
 
-It is a **static site with no framework, bundler, or dependency manager** — there is no
-`package.json`. The only build-time step is a tiny dependency-free Node script
-(`build.js`) that versions assets at deploy time (see below).
+The site is deliberately dependency-free: plain HTML, CSS, and JavaScript,
+with no framework, package manager, bundler, or automated test suite. Do not
+change that architecture unless the user explicitly requests it.
 
-## Repository structure
+## Repository map
 
 ```text
-.
-├── index.html              # HTML structure
-├── styles.css              # all CSS
-├── main.js                 # all JavaScript
-├── build.js                # asset versioning (cache-busting), runs at deploy
-├── assets/                 # images (logo, instructor photo, section backgrounds)
-├── robots.txt                # crawler directives
-├── .github/workflows/static.yml   # GitHub Pages deploy workflow
-├── README.md                  # project overview (Polish)
-└── AGENTS.md                  # instructions for Codex/AI agents (Polish)
+index.html                    semantic markup, copy, SEO, prices and summary dates
+styles.css                    all styling, responsive rules and CSS animation
+main.js                       all interactions and detailed schedule data
+build.js                      dependency-free asset cache-busting script
+assets/                       responsive images, logo, icons and social preview
+site.webmanifest              installable-site metadata and icons
+robots.txt                    crawler directives
+.github/workflows/static.yml  GitHub Pages deployment
+README.md                     project documentation in Polish
+AGENTS.md                     canonical working rules for AI agents in Polish
 ```
 
-There is no `src/` and no automated test suite; CI is just the Pages deploy workflow.
+Read `AGENTS.md` before making changes. It is the canonical agent instruction
+file; keep this file aligned with it.
 
-## How the site is built
+## Runtime behavior
 
-- `index.html` holds the markup and links out to `styles.css` and `main.js`.
-- CSS uses custom properties defined in `:root` for the color palette and layout, e.g.
-  `--navy`, `--navy2`, `--navy3` (dark navy backgrounds), `--orange` / `--orange2`
-  (accent), `--gray` (secondary text), and `--container-xxl` (with the `.container-xxl`
-  helper using `width: min(...)`) for the desktop container width.
-- `build.js` appends a content-hash query (`?v=<hash>`) to references to `styles.css`,
-  `main.js`, and images in both `index.html` and `styles.css`, so deploys reliably bust
-  caches. It is idempotent, dependency-free, and runs in the Pages workflow before upload.
-  Source files in the repo stay clean — hashes are injected only in the pipeline.
-- Font is Inter, loaded from Google Fonts via `<link>` preconnect tags in `<head>`.
-- JS is vanilla, no libraries: accordion toggle for the program modules, an
-  `IntersectionObserver`-based scroll-reveal effect, an animated stat counter in the
-  hero, and scroll-driven nav/progress-bar/back-to-top behavior. All animation logic
-  checks `prefers-reduced-motion` and skips itself when the user has that preference set.
+`main.js` initializes six features:
 
-## Page sections (in order)
+- the eight-module program accordion,
+- schedule filters and a native `<dialog>` with generated month calendars,
+- `IntersectionObserver`-based reveal effects,
+- animated hero counters,
+- scroll state for the navigation, progress bar, and back-to-top button,
+- custom smooth scrolling for navigation links.
 
-1. Nav
-2. Hero (headline + CTA + animated stats)
-3. "Dla kogo" (target audience)
-4. "Co zyskasz" (benefits)
-5. "Program" — accordion with 8 training modules
-6. "Cennik" — pricing + subsidy info (dofinansowanie do 93%)
-7. Expert quote section
-8. "Prowadzący" — instructor profile (Szymon Kapturkiewicz)
-9. "Informacje" — organizational info and contact details
-10. "Rejestracja" — CTA linking to an external registration form
-11. Footer
+Motion code respects `prefers-reduced-motion`. Schedule dialog focus returns to
+the tile that opened it.
 
-## Key facts to keep accurate in content edits
+## Content sources of truth
 
-- 70-hour workshop program
-- Location: Łódź, ul. Traugutta 25
-- Organizer: Textilimpex
-- Subsidy: up to 93% (dofinansowanie)
-- Instructor: Szymon Kapturkiewicz
-- 8 program modules in the accordion
+- General copy, program, pricing, contacts, CTA links, edition tiles, and the
+  “Najbliższy start” card are in `index.html`.
+- Full edition dates, recruitment deadlines, attendance mode, hours, calendar
+  days, and dialog notes are in `scheduleEditions` at the top of `main.js`.
+- Visual tokens, component rules, breakpoints, and motion are in `styles.css`.
+- Canonical, Open Graph, Twitter, favicon, manifest, and font declarations are
+  in the `<head>` of `index.html`.
 
-## Conventions and constraints
+Summary start dates intentionally appear in `index.html` while detailed
+schedules live in `main.js`. Update both whenever an edition changes. Pricing
+and subsidy claims also occur in several page sections and SEO metadata; search
+the repository and keep every occurrence consistent.
 
-- **Keep it a static project.** Do not introduce a framework, bundler, package manager,
-  or build step unless the user explicitly asks for one.
-- **Polish language only** for all user-facing site content.
-- **Keep CSS in `styles.css` and JS in `main.js`** — don't inline them back into
-  `index.html`.
-- **Don't hand-write `?v=...` on asset paths** — `build.js` adds them automatically at
-  deploy time.
-- Preserve the existing visual identity: dark navy backgrounds, orange accents, white
-  text, gray secondary text — match the existing CSS variables rather than hardcoding
-  new colors.
-- Use semantic HTML and follow existing class-naming patterns (e.g. `.fw-card`,
-  `.benefit-card`, `.acc-item`, `.price-card`, `.info-card`, `.contact-card`).
-- Accessibility requirements: meaningful `alt` text on informational images, visible
-  focus states on links/buttons, full keyboard operability, and respect for
-  `prefers-reduced-motion` in any new animation.
-- No `try/catch` wrapping around imports/scripts — there are no imports/modules to begin
-  with; keep the script inline and dependency-free.
-- If the public structure of the site changes (new pages, a sitemap, etc.), update
-  `robots.txt` accordingly.
-- Keep `<title>` and the `meta description` in `index.html` concise and accurate to the
-  page content if they need to change.
+Current facts that must not drift accidentally:
 
-## Local development
+- 8 modules and 64 clock hours,
+- base price: PLN 6,400,
+- individual contribution: PLN 448 at 93% subsidy, with no surcharge,
+- company/employee contribution: PLN 960 at 85% subsidy,
+- subsidy: up to 93% for an individual and 85% for a company/employee,
+- venue: Textilimpex Sp. z o.o., ul. Traugutta 25, Łódź,
+- five on-site or hybrid editions from October 2026 through January 2027,
+- instructor: Szymon Kapturkiewicz.
 
-No build step. Either open `index.html` directly in a browser, or serve it locally:
+## Implementation constraints
+
+- Keep all user-facing copy in Polish.
+- Keep CSS in `styles.css` and JavaScript in `main.js`; do not add inline styles
+  or scripts to `index.html`.
+- Reuse the existing semantic markup, class naming, and CSS custom properties.
+- Preserve the navy/orange B2B visual identity.
+- Do not add dependencies or build tooling for work that plain browser APIs can
+  handle.
+- Keep the classic deferred script setup; this project does not use JS modules.
+- Do not wrap imports or scripts in `try/catch`.
+- Do not manually add `?v=...` query strings to local assets.
+
+For section imagery, preserve the AVIF/WebP/JPG `<picture>` fallback sets. Use
+meaningful `alt` text for informative images and empty alternatives for purely
+decorative imagery.
+
+Accessibility is a release requirement: maintain keyboard operation, visible
+focus, correct ARIA state, dialog focus restoration, and reduced-motion
+behavior.
+
+## Local development and verification
+
+Serve the repository root:
 
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 4173
 ```
 
-Then visit `http://localhost:8000`.
-
-## Testing changes
-
-There is no automated test suite. After making changes:
+Open `http://localhost:4173`. After every change run:
 
 ```bash
 git diff --check
 ```
 
-For visual or behavioral changes, run a local server, check the page in both desktop and
-mobile viewport widths, and verify interactions (accordion, scroll reveal, nav-on-scroll,
-back-to-top) work and remain keyboard-accessible.
+For visual or behavioral changes, test desktop and mobile viewports and verify
+the accordion, schedule filters, dialog (including Escape and backdrop close),
+CTA links, custom scrolling, back-to-top behavior, keyboard focus, and reduced
+motion. Capture a screenshot when the environment supports it.
 
-## Deployment
+## Cache-busting and deployment
 
-Pushing to `main` triggers `.github/workflows/static.yml`. The workflow runs
-`node build.js` to inject cache-busting version hashes, then uploads the repository root
-to GitHub Pages. No other build artifacts are generated.
+`build.js` rewrites local references in `index.html` and `styles.css`, adding a
+10-character SHA-256 content hash to `styles.css`, `main.js`, and files below
+`assets/`. It handles HTML `href`/`src`/`srcset` attributes and CSS `url(...)`
+and replaces an existing generated version parameter.
+
+Do not run it in the normal working tree merely to validate changes: it edits
+tracked source files. GitHub Actions runs it on a fresh checkout before upload,
+so committed sources must remain free of generated `?v=...` values.
+
+Pushes to `main` and manual workflow dispatches run
+`.github/workflows/static.yml`, which configures Pages, versions assets, uploads
+the repository root, and deploys it to GitHub Pages.
+
+If public URLs or page structure change, update canonical/social metadata and
+`robots.txt` as applicable. If icons change, also verify `site.webmanifest`.

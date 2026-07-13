@@ -5,27 +5,27 @@ const scheduleEditions = {
     title: 'I edycja tygodniowa',
     subtitle: 'czwartek-piątek · stacjonarnie · Łódź',
     color: '#4f91f7',
-    range: '15.10.2026-06.11.2026',
+    range: '29.10.2026-20.11.2026',
     recruitment: '14.10.2026',
     note: 'Wszystkie zjazdy odbywają się stacjonarnie w Łodzi, w siedzibie Textilimpex przy ul. Traugutta 25.',
     sessions: [
-      { no: 1, date: '15-16.10.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-10-15', '2026-10-16'] },
-      { no: 2, date: '22-23.10.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-10-22', '2026-10-23'] },
-      { no: 3, date: '29-30.10.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-10-29', '2026-10-30'] },
-      { no: 4, date: '05-06.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-05', '2026-11-06'] }
+      { no: 1, date: '29-30.10.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-10-29', '2026-10-30'] },
+      { no: 2, date: '05-06.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-05', '2026-11-06'] },
+      { no: 3, date: '12-13.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-12', '2026-11-13'] },
+      { no: 4, date: '19-20.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-19', '2026-11-20'] }
     ]
   },
   'weekend-1': {
     title: 'I edycja weekendowa',
     subtitle: 'sobota-niedziela · stacjonarnie · Łódź',
     color: '#6ebf36',
-    range: '17.10.2026-22.11.2026',
-    recruitment: '16.10.2026',
-    note: 'Edycja dla osób, które wolą realizować 70 godzin szkolenia w cyklu weekendowym.',
+    range: '24.10.2026-22.11.2026',
+    recruitment: '24.09.2026',
+    note: 'Edycja dla osób, które wolą realizować 64 godziny szkolenia w cyklu weekendowym.',
     sessions: [
-      { no: 1, date: '17-18.10.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-10-17', '2026-10-18'] },
-      { no: 2, date: '24-25.10.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-10-24', '2026-10-25'] },
-      { no: 3, date: '07-08.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-07', '2026-11-08'] },
+      { no: 1, date: '24-25.10.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-10-24', '2026-10-25'] },
+      { no: 2, date: '07-08.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-07', '2026-11-08'] },
+      { no: 3, date: '14-15.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-14', '2026-11-15'] },
       { no: 4, date: '21-22.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-21', '2026-11-22'] }
     ]
   },
@@ -33,28 +33,28 @@ const scheduleEditions = {
     title: 'II edycja weekendowa',
     subtitle: 'sobota-niedziela · hybrydowa',
     color: '#ff8a2a',
-    range: '14.11.2026-13.12.2026',
+    range: '28.11.2026-20.12.2026',
     recruitment: '13.11.2026',
     note: 'W trybie hybrydowym 1 i 4 zjazd odbywają się stacjonarnie, a 2 i 3 online.',
     sessions: [
-      { no: 1, date: '14-15.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-14', '2026-11-15'] },
-      { no: 2, date: '28-29.11.2026', hours: '09:00-17:00', type: 'online', days: ['2026-11-28', '2026-11-29'] },
-      { no: 3, date: '05-06.12.2026', hours: '09:00-17:00', type: 'online', days: ['2026-12-05', '2026-12-06'] },
-      { no: 4, date: '12-13.12.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-12-12', '2026-12-13'] }
+      { no: 1, date: '28-29.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-28', '2026-11-29'] },
+      { no: 2, date: '05-06.12.2026', hours: '09:00-17:00', type: 'online', days: ['2026-12-05', '2026-12-06'] },
+      { no: 3, date: '12-13.12.2026', hours: '09:00-17:00', type: 'online', days: ['2026-12-12', '2026-12-13'] },
+      { no: 4, date: '19-20.12.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-12-19', '2026-12-20'] }
     ]
   },
   'week-2': {
     title: 'II edycja tygodniowa',
     subtitle: 'czwartek-piątek · hybrydowa',
     color: '#28bdb5',
-    range: '19.11.2026-11.12.2026',
+    range: '26.11.2026-18.12.2026',
     recruitment: '18.11.2026',
     note: 'W trybie hybrydowym 1 i 4 zjazd odbywają się stacjonarnie, a 2 i 3 online.',
     sessions: [
-      { no: 1, date: '19-20.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-19', '2026-11-20'] },
-      { no: 2, date: '26-27.11.2026', hours: '09:00-17:00', type: 'online', days: ['2026-11-26', '2026-11-27'] },
-      { no: 3, date: '03-04.12.2026', hours: '09:00-17:00', type: 'online', days: ['2026-12-03', '2026-12-04'] },
-      { no: 4, date: '10-11.12.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-12-10', '2026-12-11'] }
+      { no: 1, date: '26-27.11.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-11-26', '2026-11-27'] },
+      { no: 2, date: '03-04.12.2026', hours: '09:00-17:00', type: 'online', days: ['2026-12-03', '2026-12-04'] },
+      { no: 3, date: '10-11.12.2026', hours: '09:00-17:00', type: 'online', days: ['2026-12-10', '2026-12-11'] },
+      { no: 4, date: '17-18.12.2026', hours: '09:00-17:00', type: 'stacjonarnie', days: ['2026-12-17', '2026-12-18'] }
     ]
   },
   'weekend-3': {
@@ -256,9 +256,9 @@ const initReveal = () => {
     '.section-label, .section-title, .divider, .section-desc, .program-tag, ' +
     '.fw-card, .benefit-card, .acc-item, .price-card, .subsidy-info, ' +
     '.quote-block, .trainer-wrap, .schedule-filter, .edition-tile, ' +
-    '.info-card, .contact-card, .register-box'
+    '.info-card, .contact-card, .faq-contacts, .faq-person, .faq-item, .register-box'
   );
-  const staggered = '.fw-card, .benefit-card, .acc-item, .price-card, .schedule-filter, .edition-tile, .info-card, .contact-card';
+  const staggered = '.fw-card, .benefit-card, .acc-item, .price-card, .schedule-filter, .edition-tile, .info-card, .contact-card, .faq-person, .faq-item';
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {

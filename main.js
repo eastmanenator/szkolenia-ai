@@ -294,7 +294,7 @@ const initReveal = () => {
   const revealTargets = document.querySelectorAll(
     '.section-label, .section-title, .divider, .section-desc, .program-tag, ' +
     '.fw-card, .benefit-card, .acc-item, .price-card, .subsidy-info, ' +
-    '.quote-block, .trainer-wrap, .schedule-filter, .edition-tile, ' +
+    '.trainer-wrap, .schedule-filter, .edition-tile, ' +
     '.info-card, .contact-card, .faq-contacts, .faq-person, .faq-item, .register-box'
   );
   const staggered = '.fw-card, .benefit-card, .acc-item, .price-card, .schedule-filter, .edition-tile, .info-card, .contact-card, .faq-person, .faq-item';

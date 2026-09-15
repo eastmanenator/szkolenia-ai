@@ -10,7 +10,8 @@ Publiczny adres strony: <https://eastmanenator.github.io/szkolenia-ai/>
 
 - szkolenie obejmuje 8 modułów i 64 godziny zegarowe,
 - zajęcia odbywają się stacjonarnie w Łodzi lub w formule hybrydowej,
-- dostępnych jest pięć edycji od października 2026 do stycznia 2027,
+- dostępne są dwie edycje weekendowe ze startem 24 października i 19 grudnia 2026,
+- pełny terminarz II edycji zostanie opublikowany wkrótce,
 - cena bazowa wynosi 6 400 zł, a deklarowane dofinansowanie sięga 93%,
 - prowadzącym jest Szymon Kapturkiewicz,
 - rejestracja odbywa się przez formularz zewnętrzny.
@@ -57,7 +58,6 @@ Kolejność głównych części strony:
 `main.js` obsługuje:
 
 - akordeon programu,
-- filtrowanie edycji szkolenia,
 - modal `<dialog>` z kalendarzem i tabelą zjazdów,
 - animacje wejścia sekcji i liczniki w hero,
 - stan nawigacji, pasek postępu i przycisk powrotu na górę,
@@ -77,8 +77,10 @@ Animacje są wyłączane lub upraszczane przy `prefers-reduced-motion`.
 | Formularz zgłoszeniowy | `index.html` | Ten sam zewnętrzny URL występuje w kilku CTA. |
 
 Terminy mają dwa poziomy prezentacji: skrócone daty startu są zapisane w
-`index.html`, a pełne harmonogramy w `scheduleEditions` w `main.js`. Przy zmianie
-edycji trzeba zaktualizować oba miejsca oraz kartę „Najbliższy start”.
+`index.html`, a potwierdzone pełne harmonogramy w `scheduleEditions` w `main.js`.
+Przy zmianie edycji trzeba zaktualizować oba miejsca oraz kartę „Najbliższy
+start”. Edycja bez potwierdzonego terminarza pozostaje wyłącznie zapowiedzią w
+`index.html` i nie otwiera modala kalendarza.
 
 ## Uruchomienie lokalne
 
@@ -116,8 +118,8 @@ git diff --check
 ```
 
 Po zmianach HTML, CSS lub JavaScript uruchom lokalny serwer i sprawdź co
-najmniej widok desktopowy oraz mobilny. Zweryfikuj akordeon, filtry terminów,
-otwieranie i zamykanie modala, CTA, przewijanie oraz widoczny focus klawiatury.
+najmniej widok desktopowy oraz mobilny. Zweryfikuj akordeon, otwieranie i
+zamykanie modala, CTA, przewijanie oraz widoczny focus klawiatury.
 Nie ma obecnie automatycznego zestawu testów.
 
 ## Wdrożenie

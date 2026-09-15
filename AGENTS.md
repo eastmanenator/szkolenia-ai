@@ -32,14 +32,16 @@ Obecna oferta obejmuje:
 - wkład własny 960 zł dla firmy/pracownika przy dofinansowaniu 85%,
 - dofinansowanie do 93% dla osoby fizycznej i 85% dla firmy/pracownika,
 - Łódź, Textilimpex Sp. z o.o., ul. Traugutta 25,
-- edycje stacjonarne oraz hybrydowe od października 2026 do stycznia 2027,
+- dwie edycje weekendowe ze startem 24 października i 19 grudnia 2026,
+- pełny terminarz II edycji zostanie opublikowany wkrótce,
 - prowadzącego Szymona Kapturkiewicza.
 
 Daty startu edycji są zdublowane celowo: kafelki i karta „Najbliższy start” są
-w `index.html`, natomiast pełne daty zjazdów, godziny, tryb i koniec rekrutacji
-są w `scheduleEditions` w `main.js`. Zmiana harmonogramu wymaga synchronizacji
-obu plików. Zachowaj też zgodność ceny i dofinansowania między hero, sekcją
-korzyści, cennikiem oraz metadanymi SEO.
+w `index.html`, natomiast potwierdzone pełne daty zjazdów, godziny, tryb i koniec
+rekrutacji są w `scheduleEditions` w `main.js`. Edycja bez potwierdzonego
+terminarza pozostaje wyłącznie zapowiedzią w `index.html` i nie otwiera modala.
+Zmiana harmonogramu wymaga synchronizacji obu plików. Zachowaj też zgodność ceny
+i dofinansowania między hero, sekcją korzyści, cennikiem oraz metadanymi SEO.
 
 ## Zasady zmian
 
@@ -74,7 +76,7 @@ korzyści, cennikiem oraz metadanymi SEO.
 
 ## Dostępność i UX
 
-- Wszystkie linki, przyciski, akordeon, filtry i modal muszą działać klawiaturą.
+- Wszystkie linki, przyciski, akordeon i modal muszą działać klawiaturą.
 - Zachowaj widoczny `:focus-visible`.
 - Poprawnie aktualizuj stany ARIA, m.in. `aria-expanded` i `aria-pressed`.
 - Po zamknięciu modala focus powinien wracać do kafelka, który go otworzył.
@@ -96,7 +98,7 @@ python3 -m http.server 4173
 ```
 
 Sprawdź stronę w przeglądarce na desktopie i urządzeniu mobilnym. Zweryfikuj
-akordeon, filtry edycji, modal harmonogramu (w tym zamykanie przez Escape i
+akordeon, modal harmonogramu (w tym zamykanie przez Escape i
 kliknięcie tła), CTA, przewijanie, przycisk „do góry”, focus oraz wariant
 `prefers-reduced-motion`. Jeśli środowisko pozwala, wykonaj zrzut ekranu.
 

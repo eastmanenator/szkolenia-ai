@@ -673,18 +673,12 @@
         <div class="section-label">Informacje organizacyjne</div>
         <h2 class="section-title"><span class="accent">Terminy</span><br>i miejsce</h2>
         <div class="divider"></div>
-        <p class="schedule-intro">Wybierz edycję szkolenia, aby zobaczyć szczegółowy kalendarz zjazdów, godziny, formę zajęć oraz termin zakończenia rekrutacji.</p>
-      </div>
-      <div class="schedule-filters" aria-label="Filtr terminów szkolenia">
-        <button class="schedule-filter active" type="button" data-schedule-filter="all" aria-pressed="true">Wszystkie</button>
-        <button class="schedule-filter" type="button" data-schedule-filter="week" aria-pressed="false">Tygodniowe</button>
-        <button class="schedule-filter" type="button" data-schedule-filter="weekend" aria-pressed="false">Weekendowe</button>
-        <button class="schedule-filter" type="button" data-schedule-filter="hybrid" aria-pressed="false">Hybrydowe</button>
+        <p class="schedule-intro">Sprawdź dostępne terminy szkolenia. Szczegółowy kalendarz I edycji jest już dostępny, a terminarz II edycji opublikujemy wkrótce.</p>
       </div>
     </div>
 
     <div class="edition-tiles" aria-label="Dostępne edycje szkolenia">
-      <button class="edition-tile edition-featured edition-weekend" type="button" data-edition="weekend-1" data-schedule-categories="weekend">
+      <button class="edition-tile edition-featured edition-weekend" type="button" data-edition="weekend-1">
         <span class="edition-featured-label">Najbliższy termin</span>
         <span class="edition-tile-top">
           <span>
@@ -697,53 +691,21 @@
         <span class="edition-tile-action">Zobacz kalendarz</span>
       </button>
 
-      <button class="edition-tile edition-week" type="button" data-edition="week-1" data-schedule-categories="week">
-        <span class="edition-tile-top">
-          <span>
-            <span class="edition-eyebrow">I edycja</span>
-            <span class="edition-title">Tygodniowa</span>
-          </span>
-          <span class="edition-pill">czw-pt</span>
-        </span>
-        <span class="edition-tile-date"><strong>29.10.2026</strong><span>start szkolenia</span></span>
-        <span class="edition-tile-action">Zobacz kalendarz</span>
-      </button>
-
-      <button class="edition-tile edition-weekend-2" type="button" data-edition="weekend-2" data-schedule-categories="weekend hybrid">
+      <article class="edition-tile edition-featured edition-weekend-2 edition-tile-static">
+        <span class="edition-featured-label">Kolejny termin</span>
         <span class="edition-tile-top">
           <span>
             <span class="edition-eyebrow">II edycja</span>
-            <span class="edition-title">Weekendowa hybrydowa</span>
+            <span class="edition-title">Weekendowa</span>
           </span>
           <span class="edition-pill">sob-nd</span>
         </span>
-        <span class="edition-tile-date"><strong>28.11.2026</strong><span>start szkolenia</span></span>
-        <span class="edition-tile-action">Zobacz kalendarz</span>
-      </button>
-
-      <button class="edition-tile edition-week-2" type="button" data-edition="week-2" data-schedule-categories="week hybrid">
-        <span class="edition-tile-top">
-          <span>
-            <span class="edition-eyebrow">II edycja</span>
-            <span class="edition-title">Tygodniowa hybrydowa</span>
-          </span>
-          <span class="edition-pill">czw-pt</span>
+        <span class="edition-tile-date"><strong>19.12.2026</strong><span>start szkolenia</span></span>
+        <span class="edition-tile-status">
+          <span class="edition-tile-action edition-tile-action-pending">Kalendarz</span>
+          <span class="edition-tile-soon">Wkrótce terminarz</span>
         </span>
-        <span class="edition-tile-date"><strong>26.11.2026</strong><span>start szkolenia</span></span>
-        <span class="edition-tile-action">Zobacz kalendarz</span>
-      </button>
-
-      <button class="edition-tile edition-weekend-3" type="button" data-edition="weekend-3" data-schedule-categories="weekend hybrid">
-        <span class="edition-tile-top">
-          <span>
-            <span class="edition-eyebrow">III edycja</span>
-            <span class="edition-title">Weekendowa hybrydowa</span>
-          </span>
-          <span class="edition-pill">sob-nd</span>
-        </span>
-        <span class="edition-tile-date"><strong>09.01.2027</strong><span>start szkolenia</span></span>
-        <span class="edition-tile-action">Zobacz kalendarz</span>
-      </button>
+      </article>
     </div>
 
     <dialog class="schedule-dialog" id="schedule-dialog" aria-labelledby="schedule-dialog-title">
@@ -787,7 +749,7 @@
       <div class="info-card">
         <div class="info-card-label">Najbliższy start</div>
         <div class="info-card-value">24.10.2026</div>
-        <div class="info-card-sub">Dostępne edycje tygodniowe, weekendowe i hybrydowe</div>
+        <div class="info-card-sub">Dwie dostępne edycje weekendowe</div>
       </div>
       <div class="info-card">
         <div class="info-card-label">Czas trwania</div>
